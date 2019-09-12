@@ -1,114 +1,94 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {useState, useEffect} from 'react';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
+import axios from 'axios';
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
+const initialState = {
+  data: [],
 };
 
+export default function App() {
+  const [state, setstate] = useState(initialState);
+
+  useEffect(() => {
+    axios
+      .get('https://www.websro.com.br/detalhes.php?P_COD_UNI=LL660974473CN')
+      .then(function(response) {
+        const indiceInicial = response.data.indexOf('<tbody>');
+        const indiceFinal = response.data.indexOf('</tbody>');
+
+        const tabela = response.data.substring(indiceInicial, indiceFinal);
+
+        const tabelaArray = tabela.split("<tr><td valign='top'>");
+        tabelaArray.shift();
+
+        let dataArray = [];
+
+        tabelaArray.forEach(element => {
+          const itemArray = element.split('\n');
+          const itemObjeto = {
+            data: itemArray[0]
+              .split('<br>')
+              .join(' ')
+              .trim(),
+            local: itemArray[1]
+              .substring(
+                itemArray[1].indexOf('>') + 1,
+                itemArray[1].indexOf('</'),
+              )
+              .split('/')
+              .join(' ')
+              .trim(),
+            status: itemArray[2]
+              .substring(
+                itemArray[2].indexOf('g>') + 2,
+                itemArray[2].indexOf('</strong><br>'),
+              )
+              .trim(),
+            registro: itemArray[4]
+              .substring(0, itemArray[4].indexOf('</td>'))
+              .trim(),
+          };
+
+          dataArray.push(itemObjeto);
+        });
+
+        setstate({
+          data: dataArray,
+        });
+      });
+  }, []);
+
+  return (
+    <View style={styles.Container}>
+      <FlatList
+        data={state.data}
+        renderItem={({item}) => {
+          return (
+            <View style={styles.ListaItem}>
+              <Text style={styles.Texto}>{item.data}</Text>
+              <Text style={styles.Texto}>{item.local}</Text>
+              <Text style={styles.Texto}>{item.status}</Text>
+              <Text style={styles.Texto}>{item.registro}</Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => `list-item-${index}`}
+      />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  Container: {
+    flex: 1,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  ListaItem: {
+    borderStyle: 'solid',
+    borderColor: 'rgb(12, 12, 18)',
+    borderWidth: 1,
+    flexDirection: 'column',
   },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  Texto: {
+    fontSize: 16,
   },
 });
-
-export default App;
