@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import Container from '../shared/components/Container';
 import HomeController from '../controllers/HomeController';
-import {Card} from 'react-native-elements';
+import {ListItem, Avatar} from 'react-native-elements';
 
 const initialState = {
   data: [],
@@ -22,9 +22,41 @@ export default function Home() {
     });
   }
 
+  function retornaAvatar() {
+    return (
+      <Avatar
+        size="medium"
+        rounded
+        reverse
+        icon={{name: 'check-circle', color:'#009019', type: 'font-awesome5'}}
+        onPress={() => console.log("Works!")}
+        activeOpacity={0.7}
+      />
+    );
+  }
+
+  const keyExtractor = (item, index) => index.toString();
+
+  function renderItem({item}) {
+    return (
+      <ListItem
+        title={item.registro}
+        subtitle={item.status}
+        leftAvatar={retornaAvatar()}
+        bottomDivider
+        chevron
+      />
+    );
+  }
+
   return (
     <Container>
       <FlatList
+        keyExtractor={keyExtractor}
+        data={state.data}
+        renderItem={renderItem}
+      />
+      {/* <FlatList
         data={state.data}
         renderItem={({item}) => {
           return (
@@ -37,7 +69,7 @@ export default function Home() {
           );
         }}
         keyExtractor={(item, index) => `list-item-${index}`}
-      />
+      /> */}
     </Container>
   );
 }
