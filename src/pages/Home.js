@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import Container from '../shared/components/Container';
-import HomeController from '../controllers/HomeController';
 import {ListItem, Avatar} from 'react-native-elements';
+import EncomendaController from '../controllers/EncomendaController';
 
 const initialState = {
   data: [],
@@ -16,9 +16,12 @@ export default function Home() {
   }, []);
 
   async function carregaDadosRastreio() {
-    const data = await HomeController.GetRastreioCorreios('LL660974473CN');
+    const data = await EncomendaController.GetObjetoRastreio(
+      'LL660974473CN',
+      'Encomenda',
+    );
     setstate({
-      data,
+      data: data,
     });
   }
 
@@ -40,8 +43,8 @@ export default function Home() {
   function renderItem({item}) {
     return (
       <ListItem
-        title={item.registro}
-        subtitle={item.status}
+        title={item.Register}
+        subtitle={item.Status}
         leftAvatar={retornaAvatar()}
         bottomDivider
         chevron
