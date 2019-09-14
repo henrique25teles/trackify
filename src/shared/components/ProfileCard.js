@@ -33,7 +33,6 @@ export default () => {
           marginLeft: 0,
           marginRight: 0,
           marginBottom: 0,
-          fontSize: 10,
         }}
         title="Login"
         titleStyle={{fontSize: 10}}
