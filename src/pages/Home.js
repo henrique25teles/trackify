@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import Container from '../shared/components/Container';
 import HomeController from '../controllers/HomeController';
 import {ListItem, Avatar} from 'react-native-elements';
@@ -28,8 +28,8 @@ export default function Home() {
         size="medium"
         rounded
         reverse
-        icon={{name: 'check-circle', color:'#009019', type: 'font-awesome5'}}
-        onPress={() => console.log("Works!")}
+        icon={{name: 'check-circle', color: '#009019', type: 'font-awesome5'}}
+        onPress={() => console.log('Works!')}
         activeOpacity={0.7}
       />
     );
@@ -56,25 +56,15 @@ export default function Home() {
         data={state.data}
         renderItem={renderItem}
       />
-      {/* <FlatList
-        data={state.data}
-        renderItem={({item}) => {
-          return (
-            <View style={styles.ListaItem}>
-              <Text style={styles.Texto}>{item.data}</Text>
-              <Text style={styles.Texto}>{item.local}</Text>
-              <Text style={styles.Texto}>{item.status}</Text>
-              <Text style={styles.Texto}>{item.registro}</Text>
-            </View>
-          );
-        }}
-        keyExtractor={(item, index) => `list-item-${index}`}
-      /> */}
     </Container>
   );
 }
 
 const styles = StyleSheet.create({
+  ViewTeste: {
+    flex: 1,
+    backgroundColor: '#2599aa',
+  },
   ListaItem: {
     borderStyle: 'solid',
     borderColor: 'rgb(12, 12, 18)',
