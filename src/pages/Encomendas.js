@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList, Alert} from 'react-native';
 import Container from '../shared/components/Container';
 import EncomendaService from '../services/EncomendaService';
-import {ListItem, Avatar, Icon, SearchBar} from 'react-native-elements';
+import {ListItem, Icon, SearchBar} from 'react-native-elements';
+import LeftAvatar from '../components/Encomendas/LeftAvatar';
+import ListItemSeparator from '../shared/components/ListItemSeparator';
+import ListSearchHeader from '../shared/components/ListSearchHeader';
 
 export default class Encomendas extends Component {
   constructor(props) {
@@ -15,25 +18,9 @@ export default class Encomendas extends Component {
     this.keyExtractor = this.keyExtractor.bind(this);
   }
 
-  retornaAvatar = () => {
-    return (
-      <Avatar
-        size="medium"
-        rounded
-        reverse
-        icon={{name: 'check-circle', color: '#009019', type: 'font-awesome5'}}
-        activeOpacity={0.7}
-      />
-    );
-  };
-
   addEncomenda = () => alert('Esse botão faz nada ainda não fera!');
 
   keyExtractor = (item, index) => index.toString();
-
-  renderHeader = () => {
-    return <SearchBar placeholder="Não adianta digitar..." darkTheme round />;
-  };
 
   renderItem = ({item}) => {
     return (
@@ -41,7 +28,7 @@ export default class Encomendas extends Component {
         <ListItem
           title={item.Name}
           subtitle={item.TrackingCode}
-          leftAvatar={this.retornaAvatar()}
+          leftAvatar={LeftAvatar}
           onPress={() =>
             this.props.navigation.navigate('EncomendasDetalhes', {
               data: this.state.data.Detalhes,
@@ -53,8 +40,6 @@ export default class Encomendas extends Component {
       </Container>
     );
   };
-
-  renderSeparator = () => <View style={styles.Separator} />;
 
   componentDidMount = () => {
     this.carregaDadosRastreio();
@@ -76,8 +61,8 @@ export default class Encomendas extends Component {
         <FlatList
           style={styles.ViewTeste}
           data={this.state.data}
-          ListHeaderComponent={this.renderHeader}
-          ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={ListSearchHeader}
+          ItemSeparatorComponent={ListItemSeparator}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
         />
@@ -111,12 +96,6 @@ const styles = StyleSheet.create({
   fabIcon: {
     fontSize: 40,
     color: 'white',
-  },
-  Separator: {
-    height: 1,
-    width: '86%',
-    backgroundColor: '#CED0CE',
-    marginLeft: '14%',
   },
   ListaItem: {
     borderStyle: 'solid',
