@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, FlatList, Alert} from 'react-native';
 import Container from '../shared/components/Container';
-import EncomendaController from '../controllers/EncomendaController';
+import EncomendaService from '../services/EncomendaService';
 import {ListItem, Avatar, Icon, SearchBar} from 'react-native-elements';
 
 export default class Encomendas extends Component {
@@ -22,7 +22,6 @@ export default class Encomendas extends Component {
         rounded
         reverse
         icon={{name: 'check-circle', color: '#009019', type: 'font-awesome5'}}
-        onPress={() => console.log('Works!')}
         activeOpacity={0.7}
       />
     );
@@ -62,7 +61,7 @@ export default class Encomendas extends Component {
   };
 
   async carregaDadosRastreio() {
-    const data = await EncomendaController.GetObjetoRastreio(
+    const data = await EncomendaService.GetRastreioCorreios(
       'LL660974473CN',
       'Encomenda',
     );

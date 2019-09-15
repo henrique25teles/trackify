@@ -1,4 +1,7 @@
 import axios from 'axios';
+import Utilidade from '../shared/service/Utilidade';
+import EncomendaViewModel from '../models/Encomenda/EncomendaViewModel';
+import EncomendaDetalhesViewModel from '../models/Encomenda/EncomendaDetalhesViewModel';
 
 const GetObjetoRastreioByHtml = element => {
   const itemArray = element.split('\n');
@@ -38,14 +41,36 @@ const MontaObjetoRastreio = response => {
   return detalhesRastreio;
 };
 
+const MontaDetalhesObjetoRastreio = detalhe => {
+  return new EncomendaDetalhesViewModel({
+    Id: String(Utilidade.CreateGuid()),
+    LastDate: new Date(),
+    Local: String(detalhe.Local),
+    Status: String(detalhe.Status),
+    Register: String(detalhe.Register),
+  });
+};
+
 //LL660974473CN
 export default {
-  GetRastreioCorreios: async codigoRastreio => {
+  GetRastreioCorreios: async (codigoRastreio, nomeEncomenda) => {
     return await axios
       .get(`https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`)
       .then(MontaObjetoRastreio)
       .then(data => {
-        return data;
+        const encomendaDetalhe = new EncomendaViewModel({
+          Id: String(Utilidade.CreateGuid()),
+          Name: String(nomeEncomenda),
+          TrackingCode: String(codigoRastreio),
+          Delivered: true,
+          Detalhes: data.map(MontaDetalhesObjetoRastreio),
+        });
+
+        return [
+          {...encomendaDetalhe},
+          {...encomendaDetalhe},
+          {...encomendaDetalhe},
+        ];
       });
   },
 };
