@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList, Alert} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import Container from '../shared/components/Container';
 import EncomendaService from '../services/EncomendaService';
-import {ListItem, Icon, SearchBar} from 'react-native-elements';
+import {ListItem, Icon} from 'react-native-elements';
 import LeftAvatar from '../components/Encomendas/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
 import ListSearchHeader from '../shared/components/ListSearchHeader';
+import ButtonAdd from '../components/Encomendas/ButtonAdd';
+import EncomendaController from '../controllers/EncomendaController';
 
 export default class Encomendas extends Component {
   constructor(props) {
@@ -17,8 +19,6 @@ export default class Encomendas extends Component {
     };
     this.keyExtractor = this.keyExtractor.bind(this);
   }
-
-  addEncomenda = () => alert('Esse botão faz nada ainda não fera!');
 
   keyExtractor = (item, index) => index.toString();
 
@@ -46,10 +46,11 @@ export default class Encomendas extends Component {
   };
 
   async carregaDadosRastreio() {
-    const data = await EncomendaService.GetRastreioCorreios(
-      'LL660974473CN',
-      'Encomenda',
-    );
+    // const data = await EncomendaService.GetRastreioCorreios(
+    //   'LL660974473CN',
+    //   'Encomenda',
+    // );
+    const data = await EncomendaController._getAll();
     this.setState({
       data: data,
     });
@@ -66,11 +67,7 @@ export default class Encomendas extends Component {
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
         />
-        <Icon
-          name="add"
-          containerStyle={styles.botao}
-          onPress={this.addEncomenda}
-        />
+        <ButtonAdd />
       </Container>
     );
   }
@@ -81,18 +78,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2599aa',
   },
-  botao: {
-    position: 'absolute',
-    width: 56,
-    height: 56,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 20,
-    bottom: 20,
-    backgroundColor: '#ff0000',
-    borderRadius: 30,
-    elevation: 8,
-  },
+  // botao: {
+  //   position: 'absolute',
+  //   borderRadius: 30,
+  //   elevation: 8,
+  // },
   fabIcon: {
     fontSize: 40,
     color: 'white',
