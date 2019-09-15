@@ -1,7 +1,4 @@
 import axios from 'axios';
-import EncomendaViewModel from '../models/EncomendaViewModel';
-import EncomendaDetalhesViewModel from '../models/EncomendaDetalhesViewModel';
-import Utilidade from '../shared/service/Utilidade';
 
 const GetObjetoRastreioByHtml = element => {
   const itemArray = element.split('\n');

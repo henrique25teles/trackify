@@ -43,6 +43,11 @@ export default class Encomendas extends Component {
           title={item.Name}
           subtitle={item.TrackingCode}
           leftAvatar={this.retornaAvatar()}
+          onPress={() =>
+            this.props.navigation.navigate('EncomendasDetalhes', {
+              data: this.state.data.Detalhes,
+            })
+          }
           bottomDivider
           chevron
         />

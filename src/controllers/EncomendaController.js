@@ -1,7 +1,7 @@
 import EncomendaService from '../services/EncomendaService';
 import Utilidade from '../shared/service/Utilidade';
-import EncomendaViewModel from '../models/EncomendaViewModel';
-import EncomendaDetalhesViewModel from '../models/EncomendaDetalhesViewModel';
+import EncomendaViewModel from '../models/Encomenda/EncomendaViewModel';
+import EncomendaDetalhesViewModel from '../models/Encomenda/EncomendaDetalhesViewModel';
 
 export default {
   GetObjetoRastreio: async (codigoRastreio, nomeEncomenda) => {
