@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, RefreshControl} from 'react-native';
 import Container from '../shared/components/Container';
-import EncomendaService from '../services/EncomendaService';
-import {ListItem, Icon} from 'react-native-elements';
+import {ListItem} from 'react-native-elements';
 import LeftAvatar from '../components/Encomendas/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
 import ListSearchHeader from '../shared/components/ListSearchHeader';
@@ -16,6 +15,7 @@ export default class Encomendas extends Component {
       data: [],
       pendents: props.pendents,
       delivered: props.delivered,
+      refreshing: true,
     };
     this.keyExtractor = this.keyExtractor.bind(this);
   }
@@ -31,7 +31,7 @@ export default class Encomendas extends Component {
           leftAvatar={LeftAvatar}
           onPress={() =>
             this.props.navigation.navigate('EncomendasDetalhes', {
-              data: this.state.data.Detalhes,
+              data: item.Detalhes,
             })
           }
           bottomDivider
@@ -45,16 +45,24 @@ export default class Encomendas extends Component {
     this.carregaDadosRastreio();
   };
 
-  async carregaDadosRastreio() {
-    // const data = await EncomendaService.GetRastreioCorreios(
-    //   'LL660974473CN',
-    //   'Encomenda',
-    // );
+  renderRefresh = () => {
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this.carregaDadosRastreio}
+      />
+    );
+  };
+
+  carregaDadosRastreio = async () => {
+    await this.setState({refreshing: true});
+
     const data = await EncomendaController._getAll();
-    this.setState({
+    await this.setState({
       data: data,
+      refreshing: false,
     });
-  }
+  };
 
   render() {
     return (
@@ -66,6 +74,7 @@ export default class Encomendas extends Component {
           ItemSeparatorComponent={ListItemSeparator}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
+          refreshControl={this.renderRefresh()}
         />
         <ButtonAdd />
       </Container>
@@ -78,11 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#2599aa',
   },
-  // botao: {
-  //   position: 'absolute',
-  //   borderRadius: 30,
-  //   elevation: 8,
-  // },
   fabIcon: {
     fontSize: 40,
     color: 'white',
