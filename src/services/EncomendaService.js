@@ -66,11 +66,7 @@ export default {
           Detalhes: data.map(MontaDetalhesObjetoRastreio),
         });
 
-        return [
-          {...encomendaDetalhe},
-          {...encomendaDetalhe},
-          {...encomendaDetalhe},
-        ];
+        return encomendaDetalhe;
       });
   },
 };

@@ -8,6 +8,16 @@ import {createAppContainer} from 'react-navigation';
 import SafeAreaView from 'react-native-safe-area-view';
 import {StyleSheet, ScrollView} from 'react-native';
 import ProfileCard from './src/shared/components/ProfileCard';
+import Storage from 'react-native-storage';
+import AsyncStorage from '@react-native-community/async-storage';
+
+global.storage = new Storage({
+  // maximum capacity, default 1000
+  size: 3000,
+  storageBackend: AsyncStorage,
+  defaultExpires: null,
+  enableCache: true,
+});
 
 const CustomNavigation = props => {
   return (

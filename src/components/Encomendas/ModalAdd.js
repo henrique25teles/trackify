@@ -32,7 +32,7 @@ function ModalAdd(props) {
       state.trackingCode,
       state.name,
     );
-    await EncomendaController._storeData(rastreio);
+    EncomendaController._storeData(rastreio);
     setModalVisible(false);
   }
 
@@ -42,10 +42,15 @@ function ModalAdd(props) {
       onCloseModal={() => onCloseModal()}>
       <View>
         <Text>Nome</Text>
-        <TextInput value={state.name} placeholder="Insira o Nome..." />
+        <TextInput
+          value={state.name}
+          onChangeText={text => setstate({...state, name: text})}
+          placeholder="Insira o Nome..."
+        />
         <Text>Número de Rastreio</Text>
         <TextInput
           value={state.trackingCode}
+          onChangeText={text => setstate({...state, trackingCode: text})}
           placeholder="Insira o Código de Rastreio"
         />
         <Button title="Adiciona Rastreio" onPress={() => addRastreio()} />
