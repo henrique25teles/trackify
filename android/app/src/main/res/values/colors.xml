@@ -2,4 +2,5 @@
 <resources>
     <color name="white">#ffffff</color>
     <color name="SmoothPink">#cd5a69</color>
+    <color name="BlueDefault">#4096db</color>
 </resources>
