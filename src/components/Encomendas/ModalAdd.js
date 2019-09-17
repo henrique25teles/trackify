@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput} from 'react-native';
 import {Text, Button} from 'react-native-elements';
 import Modal from '../../shared/components/ModalDefault';
 import EncomendaController from '../../controllers/EncomendaController';
@@ -32,7 +32,7 @@ function ModalAdd(props) {
       state.trackingCode,
       state.name,
     );
-    EncomendaController._storeData(rastreio);
+    await EncomendaController._storeData(rastreio);
     setModalVisible(false);
   }
 
