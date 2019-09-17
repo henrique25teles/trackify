@@ -9,13 +9,19 @@ const routes = {
     navigationOptions: ({navigation}) => ({
       headerLeft: <DrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#4f92ff',
+        backgroundColor: '#4096db',
       },
-      headerTintColor: '#fff',
+      headerTintColor: '#fafafa',
     }),
   },
   EncomendasDetalhes: {
     screen: EncomendaDetalhes,
+    navigationOptions: ({navigation}) => ({
+      headerStyle: {
+        backgroundColor: '#4096db',
+      },
+      headerTintColor: '#fafafa',
+    }),
   },
 };
 
