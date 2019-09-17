@@ -58,15 +58,13 @@ export default {
       .get(`https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`)
       .then(MontaObjetoRastreio)
       .then(data => {
-        const encomendaDetalhe = new EncomendaViewModel({
+        return new EncomendaViewModel({
           Id: String(Utilidade.CreateGuid()),
           Name: String(nomeEncomenda),
           TrackingCode: String(codigoRastreio),
           Delivered: true,
           Detalhes: data.map(MontaDetalhesObjetoRastreio),
         });
-
-        return encomendaDetalhe;
       });
   },
 };

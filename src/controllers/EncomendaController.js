@@ -2,6 +2,7 @@ import EncomendaViewModel, {
   Storage,
 } from '../models/Encomenda/EncomendaViewModel';
 import {Alert} from 'react-native';
+import EncomendaDetalhesViewModel from '../models/Encomenda/EncomendaDetalhesViewModel';
 
 const AlertaErro = mensagem => {
   Alert.alert('Erro', mensagem, [{text: 'Ok'}]);
@@ -18,6 +19,26 @@ const onError = err => {
       break;
   }
   return null;
+};
+
+const toModel = item => {
+  return new EncomendaViewModel({
+    Id: String(item.Id),
+    Name: String(item.Name),
+    Delivered: item.Delivered,
+    TrackingCode: String(item.TrackingCode),
+    Detalhes: item.Detalhes.map(toModelDetalhes),
+  });
+};
+
+const toModelDetalhes = detalhe => {
+  return new EncomendaDetalhesViewModel({
+    Id: String(detalhe.Id),
+    LastDate: new Date(detalhe.LastDate),
+    Local: String(detalhe.Local),
+    Status: String(detalhe.Status),
+    Register: String(detalhe.Register),
+  });
 };
 
 export default {
@@ -55,7 +76,7 @@ export default {
       })
       .catch(onError);
 
-    return data;
+    return toModel(data);
   },
   _getAll: async () => {
     var data = await global.storage.getAllDataForKey(Storage).then(users => {
@@ -63,6 +84,6 @@ export default {
       return users;
     });
 
-    return data;
+    return data.map(toModel);
   },
 };
