@@ -15,8 +15,7 @@ export default class Container extends Component {
 const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: '#cd5a69',
+    backgroundColor: '#fafafa',
     borderRadius: 5,
-    //borderStartColor: '#ce4069',
   },
 });
