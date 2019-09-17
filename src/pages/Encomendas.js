@@ -85,7 +85,7 @@ export default class Encomendas extends Component {
 const styles = StyleSheet.create({
   ViewTeste: {
     flex: 1,
-    backgroundColor: '#2599aa',
+    backgroundColor: '#fafafa',
   },
   fabIcon: {
     fontSize: 40,
