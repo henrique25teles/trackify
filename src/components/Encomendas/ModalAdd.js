@@ -39,7 +39,8 @@ function ModalAdd(props) {
   return (
     <Modal
       isModalVisible={state.modalVisible}
-      onCloseModal={() => onCloseModal()}>
+      onCloseModal={() => onCloseModal()}
+      titleText="Adicionar Encomenda">
       <View>
         <Text>Nome</Text>
         <TextInput
