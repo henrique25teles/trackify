@@ -1,13 +1,31 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {Component, useContext} from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
+import {Button, Text} from 'react-native-elements';
+import ThemeContext from '../shared/Themes/ThemeContext';
 
-const About = () => {
-  return (
-    <View>
-      <Text>Essa é a tela de Sobre</Text>
-    </View>
-  );
-};
+class About extends Component {
+  static contextType = ThemeContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    console.log(this.context);
+    return (
+      <View>
+        <Text>Essa é a tela de Sobre</Text>
+        <Button
+          title="Adiciona Rastreio"
+          buttonStyle={{
+            backgroundColor: this.context.ThemeConstants.botao.backgroundColor,
+          }}
+        />
+        <TextInput />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

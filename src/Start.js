@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Routes from './shared/routes';
 import {
   DrawerNavigatorItems,
   createDrawerNavigator,
 } from 'react-navigation-drawer';
-import {Icon} from 'react-native-elements';
 import {createAppContainer} from 'react-navigation';
+import {Icon} from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import {StyleSheet, ScrollView} from 'react-native';
 import ProfileCard from './shared/components/ProfileCard';
+import ThemeContext from './shared/Themes/ThemeContext';
 
 const renderIcon = ({route}) => {
   switch (route.key) {
@@ -63,7 +64,7 @@ const NavigatorConfig = {
   backBehavior: 'initialRoute',
 };
 
-const Navigator = createDrawerNavigator(Routes, NavigatorConfig);
+const drawerNavigator = createDrawerNavigator(Routes, NavigatorConfig);
 
 const styles = StyleSheet.create({
   container: {
@@ -71,4 +72,32 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createAppContainer(Navigator);
+const Navigator = createAppContainer(drawerNavigator);
+
+//export default createAppContainer(Navigator);
+
+const ThemeConstants = {
+  botao: {
+    backgroundColor: '#fa1418',
+    color: '#4096db',
+  },
+  textInput: {
+    backgroundColor: '#000',
+    fontColor: '#fff',
+  },
+};
+
+export default class Start extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <ThemeContext.Provider value={{ThemeConstants}}>
+        <Navigator />
+      </ThemeContext.Provider>
+    );
+  }
+}
