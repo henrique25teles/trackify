@@ -2,6 +2,7 @@ import React from 'react';
 import Encomendas from '../../pages/Encomendas';
 import EncomendaDetalhes from '../../pages/EncomendaDetalhes';
 import DrawerStructure from '../../shared/components/DrawerStructure';
+import {ThemeColors} from '../../shared/Themes/ThemeContext';
 
 const routes = {
   Encomendas: {
@@ -9,18 +10,18 @@ const routes = {
     navigationOptions: ({navigation}) => ({
       headerLeft: <DrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#4096db',
+        backgroundColor: ThemeColors.primaryColor,
       },
-      headerTintColor: '#fafafa',
+      headerTintColor: ThemeColors.defaultColor,
     }),
   },
   EncomendasDetalhes: {
     screen: EncomendaDetalhes,
     navigationOptions: ({navigation}) => ({
       headerStyle: {
-        backgroundColor: '#4096db',
+        backgroundColor: ThemeColors.primaryColor,
       },
-      headerTintColor: '#fafafa',
+      headerTintColor: ThemeColors.defaultColor,
     }),
   },
 };

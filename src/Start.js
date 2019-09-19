@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import Routes from './shared/routes';
 import {
   DrawerNavigatorItems,
@@ -23,13 +23,19 @@ const renderIcon = ({route}) => {
 };
 
 const CustomNavigation = props => {
+  const context = useContext(ThemeContext);
+
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView
         style={styles.container}
         forceInset={{top: 'always', horizontal: 'never'}}>
         <ProfileCard />
-        <DrawerNavigatorItems {...props} renderIcon={renderIcon} />
+        <DrawerNavigatorItems
+          {...props}
+          {...context.drawerMenu}
+          renderIcon={renderIcon}
+        />
       </SafeAreaView>
     </ScrollView>
   );
@@ -38,7 +44,6 @@ const CustomNavigation = props => {
 const NavigatorConfig = {
   drawerBackgroundColor: '#fafafa',
   drawerType: 'front',
-  // edgeWidth: 50,
   hideStatusBar: false,
   lazy: true,
   unmountInactiveRoutes: true,

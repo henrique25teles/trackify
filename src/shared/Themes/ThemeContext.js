@@ -1,6 +1,19 @@
 import React from 'react';
 
+const ThemeColors = {
+  primaryColor: '#4096db',
+  defaultColor: '#fafafa',
+  warningColor: '#ede35a',
+  dangerColor: '#f0170c',
+};
+
 const ThemeConstants = {
+  NavigationHeader: {
+    headerStyle: {
+      backgroundColor: ThemeColors.primaryColor,
+    },
+    headerTintColor: ThemeColors.defaultColor,
+  },
   RoundButton: {
     raised: true,
     containerStyle: {
@@ -13,23 +26,27 @@ const ThemeConstants = {
       height: 56,
       borderRadius: 30,
       elevation: 30,
-      backgroundColor: '#4096db',
+      backgroundColor: ThemeColors.primaryColor,
     },
   },
   PrimaryButton: {
     raised: true,
+    buttonStyle: {
+      backgroundColor: ThemeColors.primaryColor,
+      elevation: 10,
+    },
   },
   WarningButton: {
     raised: true,
     buttonStyle: {
-      backgroundColor: '#ede35a',
+      backgroundColor: ThemeColors.warningColor,
       elevation: 10,
     },
   },
   DangerButton: {
     raised: true,
     buttonStyle: {
-      backgroundColor: '#f0170c',
+      backgroundColor: ThemeColors.dangerColor,
       elevation: 10,
     },
   },
@@ -61,7 +78,7 @@ const ThemeConstants = {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
-        backgroundColor: '#4096db',
+        backgroundColor: ThemeColors.primaryColor,
         elevation: 6, //Android
         height: 50,
       },
@@ -73,7 +90,7 @@ const ThemeConstants = {
     },
     modalContent: {
       style: {
-        backgroundColor: '#fafafa',
+        backgroundColor: ThemeColors.defaultColor,
         padding: 22,
         justifyContent: 'center',
         alignItems: 'center',
@@ -83,11 +100,13 @@ const ThemeConstants = {
     },
   },
   drawerMenu: {
-    activeTintColor: '#fafafa',
-    activeBackgroundColor: '#4096db',
+    activeTintColor: ThemeColors.defaultColor,
+    activeBackgroundColor: ThemeColors.primaryColor,
   },
 };
 
 const ThemeContext = React.createContext({...ThemeConstants});
+
+export {ThemeColors};
 
 export default ThemeContext;
