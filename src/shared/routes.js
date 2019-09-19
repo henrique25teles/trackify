@@ -1,6 +1,7 @@
 import Home from '../pages/Home';
 import Settings from '../pages/Settings';
 import About from '../pages/About';
+import Themes from '../pages/Themes';
 
 const routes = {
   Home: {
@@ -13,6 +14,12 @@ const routes = {
     screen: Settings,
     navigationOptions: {
       drawerLabel: 'Configurações',
+    },
+  },
+  Themes: {
+    screen: Themes,
+    navigationOptions: {
+      drawerLabel: 'Temas',
     },
   },
   About: {

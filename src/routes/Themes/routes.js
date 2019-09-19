@@ -1,14 +1,14 @@
 import React from 'react';
-import Encomendas from '../../pages/Encomendas';
-import EncomendaDetalhes from '../../pages/EncomendaDetalhes';
-import DrawerStructure from '../../shared/components/DrawerStructure';
+import ThemesList from '../../pages/ThemesList';
+import ThemeAdd from '../../pages/ThemeAdd';
 import {ThemeColors} from '../../shared/Themes/ThemeContext';
+import DrawerStructure from '../../shared/components/DrawerStructure';
 
 const routes = {
-  Encomendas: {
-    screen: Encomendas,
+  ThemesList: {
+    screen: ThemesList,
     navigationOptions: ({navigation}) => ({
-      title: 'Encomendas',
+      title: 'Temas',
       headerLeft: <DrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: ThemeColors.primaryColor,
@@ -16,10 +16,10 @@ const routes = {
       headerTintColor: ThemeColors.defaultColor,
     }),
   },
-  EncomendasDetalhes: {
-    screen: EncomendaDetalhes,
+  ThemeAdd: {
+    screen: ThemeAdd,
     navigationOptions: ({navigation}) => ({
-      title: 'Detalhes',
+      title: 'Adicionar Tema',
       headerStyle: {
         backgroundColor: ThemeColors.primaryColor,
       },

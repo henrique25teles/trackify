@@ -3,6 +3,7 @@ import React from 'react';
 const ThemeColors = {
   primaryColor: '#4096db',
   defaultColor: '#fafafa',
+  defaultColorSecondary: '#d4d3cf',
   warningColor: '#ede35a',
   dangerColor: '#f0170c',
 };
@@ -64,6 +65,7 @@ const ThemeConstants = {
       animationOutTiming: 800,
       backdropTransitionInTiming: 800,
       backdropTransitionOutTiming: 800,
+      useNativeDriver: true,
       style: {
         flex: 1,
         flexDirection: 'column',

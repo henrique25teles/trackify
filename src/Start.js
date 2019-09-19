@@ -9,7 +9,7 @@ import {Icon} from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import {StyleSheet, ScrollView} from 'react-native';
 import ProfileCard from './shared/components/ProfileCard';
-import ThemeContext from './shared/Themes/ThemeContext';
+import ThemeContext, {ThemeColors} from './shared/Themes/ThemeContext';
 
 const renderIcon = ({route}) => {
   switch (route.key) {
@@ -17,6 +17,8 @@ const renderIcon = ({route}) => {
       return <Icon name="home" type="octicon" />;
     case 'Settings':
       return <Icon name="setting" type="antdesign" />;
+    case 'Themes':
+      return <Icon name="decagram-outline" type="material-community" />;
     case 'About':
       return <Icon name="help-circle" type="feather" />;
   }
@@ -41,35 +43,20 @@ const CustomNavigation = props => {
   );
 };
 
-const NavigatorConfig = {
-  drawerBackgroundColor: '#fafafa',
+const drawerNavigator = createDrawerNavigator(Routes, {
+  drawerBackgroundColor: ThemeColors.defaultColor,
   drawerType: 'front',
   hideStatusBar: false,
   lazy: true,
   unmountInactiveRoutes: true,
   contentComponent: props => <CustomNavigation {...props} />,
   contentOptions: {
-    //items: '',
-    //activeItemKey: '',
-    activeTintColor: '#fafafa',
-    activeBackgroundColor: '#4096db',
-    //inactiveTintColor: '',
-    //inactiveBackgroundColor: '',
-    //onItemPres: '',
-    //itemsContainerStyle: '',
-    //itemStyle: '',
-    //labelStyle: '',
-    //activeLabelStyle: '',
-    //inactiveLabelStyle: '',
-    //iconContainerStyle: '',
+    activeTintColor: ThemeColors.defaultColor,
+    activeBackgroundColor: ThemeColors.primaryColor,
   },
-  // navigationOptions: ,
-  // defaultNavigationOptions: ,
   initialRouteName: 'Home',
   backBehavior: 'initialRoute',
-};
-
-const drawerNavigator = createDrawerNavigator(Routes, NavigatorConfig);
+});
 
 const styles = StyleSheet.create({
   container: {
