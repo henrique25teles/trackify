@@ -15,12 +15,7 @@ class About extends Component {
     return (
       <View>
         <Text>Essa é a tela de Sobre</Text>
-        <Button
-          title="Adiciona Rastreio"
-          buttonStyle={{
-            backgroundColor: this.context.ThemeConstants.botao.backgroundColor,
-          }}
-        />
+        <Button title="Adiciona Rastreio" />
         <TextInput />
       </View>
     );

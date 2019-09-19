@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
-import {Icon, Button} from 'react-native-elements';
 import ModalAdd from './ModalAdd';
+import {RoundButton} from '../../shared/components/Buttons';
 
 function ButtonAdd() {
   const [modalVisible, setstate] = useState(false);
@@ -17,30 +17,18 @@ function ButtonAdd() {
   return (
     <>
       <ModalAdd modalVisible={modalVisible} onCloseModal={CloseModal} />
-      <Button
-        raised
+      <RoundButton
         icon={{name: 'add'}}
-        containerStyle={styles.botaoContainer}
-        buttonStyle={styles.botao}
         onPress={AddEncomenda}
+        containerStyle={styles.containerStyle}
       />
-      {/* <Icon name="add" containerStyle={styles.botao} onPress={AddEncomenda} /> */}
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  botao: {
-    width: 56,
-    height: 56,
-    borderRadius: 30,
-    elevation: 30,
-    backgroundColor: '#4096db',
-  },
-  botaoContainer: {
+  containerStyle: {
     position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
     right: 20,
     bottom: 20,
   },

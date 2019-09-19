@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
-import {Text, Button} from 'react-native-elements';
+import {View, TextInput} from 'react-native';
+import {Text} from 'react-native-elements';
 import Modal from '../../shared/components/ModalDefault';
 import EncomendaController from '../../controllers/EncomendaController';
 import EncomendaService from '../../services/EncomendaService';
+import {PrimaryButton} from '../../shared/components/Buttons';
 
 const initialState = {
   modalVisible: false,
@@ -38,8 +39,8 @@ function ModalAdd(props) {
 
   return (
     <Modal
-      isModalVisible={state.modalVisible}
-      onCloseModal={() => onCloseModal()}
+      isVisible={state.modalVisible}
+      onModalHide={() => onCloseModal()}
       titleText="Adicionar Encomenda">
       <View>
         <Text>Nome</Text>
@@ -54,8 +55,11 @@ function ModalAdd(props) {
           onChangeText={text => setstate({...state, trackingCode: text})}
           placeholder="Insira o Código de Rastreio"
         />
-        <Button title="Adiciona Rastreio" onPress={() => addRastreio()} />
-        <Button
+        <PrimaryButton
+          title="Adiciona Rastreio"
+          onPress={() => addRastreio()}
+        />
+        <PrimaryButton
           title="Cancelar"
           onPress={() => setModalVisible(!state.modalVisible)}
         />
@@ -63,21 +67,5 @@ function ModalAdd(props) {
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  Container: {
-    flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  ModalContent: {
-    backgroundColor: 'white',
-    padding: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-  },
-});
 
 export default ModalAdd;

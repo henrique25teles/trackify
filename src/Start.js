@@ -74,19 +74,6 @@ const styles = StyleSheet.create({
 
 const Navigator = createAppContainer(drawerNavigator);
 
-//export default createAppContainer(Navigator);
-
-const ThemeConstants = {
-  botao: {
-    backgroundColor: '#fa1418',
-    color: '#4096db',
-  },
-  textInput: {
-    backgroundColor: '#000',
-    fontColor: '#fff',
-  },
-};
-
 export default class Start extends Component {
   constructor(props) {
     super(props);
@@ -95,9 +82,9 @@ export default class Start extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={{ThemeConstants}}>
-        <Navigator />
-      </ThemeContext.Provider>
+      // <ThemeContext.Provider value={{ThemeConstants}}>
+      <Navigator />
+      // </ThemeContext.Provider>
     );
   }
 }
