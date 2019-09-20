@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "android": "react-native run-android",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "release": "cd android && gradlew assembleRelease && cd.."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
