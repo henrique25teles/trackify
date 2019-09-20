@@ -86,4 +86,10 @@ export default {
 
     return data.map(toModel);
   },
+  _delete: async id => {
+    global.storage.remove({
+      key: Storage,
+      id: id,
+    });
+  },
 };
