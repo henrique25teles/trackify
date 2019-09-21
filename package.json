@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "emulator": "emulator -avd Pixel_3a_API_25",
     "android": "react-native run-android",
     "test": "jest",
     "lint": "eslint .",
