@@ -51,20 +51,38 @@ const MontaDetalhesObjetoRastreio = detalhe => {
   });
 };
 
+const validaCodigoRastreio = codigoRastreio => {
+  var regexTeste = new RegExp(/[A-Z][A-Z]\d\d\d\d\d\d\d\d\d[A-Z][A-Z]$/);
+  var result = regexTeste.test(codigoRastreio);
+  return result;
+};
+
 //LL660974473CN
 export default {
   GetRastreioCorreios: async (codigoRastreio, nomeEncomenda) => {
-    return await axios
-      .get(`https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`)
-      .then(MontaObjetoRastreio)
-      .then(data => {
-        return new EncomendaViewModel({
-          Id: String(Utilidade.CreateGuid()),
-          Name: String(nomeEncomenda),
-          TrackingCode: String(codigoRastreio),
-          Delivered: true,
-          Detalhes: data.map(MontaDetalhesObjetoRastreio),
+    try {
+      if (!validaCodigoRastreio(codigoRastreio)) {
+        throw new Error('Código de rastreamento inválido');
+      }
+
+      const encomenda = await axios
+        .get(
+          `https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`,
+        )
+        .then(MontaObjetoRastreio)
+        .then(data => {
+          return new EncomendaViewModel({
+            Id: String(Utilidade.CreateGuid()),
+            Name: String(nomeEncomenda),
+            TrackingCode: String(codigoRastreio),
+            Delivered: true,
+            Detalhes: data.map(MontaDetalhesObjetoRastreio),
+          });
         });
-      });
+
+      return {result: true, encomenda};
+    } catch (error) {
+      return {result: false, message: error.message};
+    }
   },
 };

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, TextInput} from 'react-native';
+import {View, TextInput, Alert} from 'react-native';
 import {Text} from 'react-native-elements';
 import Modal from '../../shared/components/ModalDefault';
 import EncomendaController from '../../controllers/EncomendaController';
@@ -33,8 +33,13 @@ function ModalAdd(props) {
       state.trackingCode,
       state.name,
     );
-    await EncomendaController._storeData(rastreio);
-    setModalVisible(false);
+    if (rastreio.result) {
+      await EncomendaController._storeData(rastreio.encomenda);
+      setModalVisible(false);
+    } else {
+      await Alert.alert('', rastreio.message);
+      setModalVisible(false);
+    }
   }
 
   return (
