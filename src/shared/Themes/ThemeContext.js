@@ -20,17 +20,7 @@ const createTheme = themeColors => {
 
   const roundButton = {
     RoundButton: {
-      raised: true,
-      containerStyle: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 30,
-      },
       buttonStyle: {
-        width: 56,
-        height: 56,
-        borderRadius: 30,
-        elevation: 30,
         backgroundColor: themeColors.primaryColor,
       },
     },
