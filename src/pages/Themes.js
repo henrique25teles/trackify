@@ -9,10 +9,4 @@ const ThemeStack = createStackNavigator(Routes, {
 
 const Navigator = createAppContainer(ThemeStack);
 
-class Themes extends Component {
-  render() {
-    return <Navigator />;
-  }
-}
-
-export default Themes;
+export default Navigator;

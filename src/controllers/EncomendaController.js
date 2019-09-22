@@ -43,7 +43,6 @@ const toModelDetalhes = detalhe => {
 
 export default {
   _storeData: async obj => {
-    console.log(obj);
     await global.storage.save({
       key: Storage,
       id: obj.Id,
@@ -57,7 +56,6 @@ export default {
         syncInBackground: true,
       })
       .then(ret => {
-        console.log(ret);
         return ret;
       })
       .catch(onError);
@@ -71,7 +69,6 @@ export default {
         syncInBackground: true,
       })
       .then(ret => {
-        console.log(ret);
         return ret;
       })
       .catch(onError);
@@ -79,10 +76,11 @@ export default {
     return toModel(data);
   },
   _getAll: async () => {
-    var data = await global.storage.getAllDataForKey(Storage).then(users => {
-      console.log(users);
-      return users;
-    });
+    var data = await global.storage
+      .getAllDataForKey(Storage)
+      .then(encomendas => {
+        return encomendas;
+      });
 
     return data.map(toModel);
   },

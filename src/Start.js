@@ -9,7 +9,7 @@ import {Icon} from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import {StyleSheet, ScrollView} from 'react-native';
 import ProfileCard from './shared/components/ProfileCard';
-import ThemeContext, {ThemeColors} from './shared/Themes/ThemeContext';
+import ThemeContext from './shared/Themes/ThemeContext';
 
 const renderIcon = ({route}) => {
   switch (route.key) {
@@ -24,18 +24,16 @@ const renderIcon = ({route}) => {
   }
 };
 
-const CustomNavigation = props => {
+const CustomDrawerNavigation = props => {
   const context = useContext(ThemeContext);
 
   return (
     <ScrollView style={styles.container}>
-      <SafeAreaView
-        style={styles.container}
-        forceInset={{top: 'always', horizontal: 'never'}}>
+      <SafeAreaView forceInset={{top: 'always', horizontal: 'never'}}>
         <ProfileCard />
         <DrawerNavigatorItems
           {...props}
-          {...context.drawerMenu}
+          {...context.CustomDrawerNavigation.DrawerNavigatorItems}
           renderIcon={renderIcon}
         />
       </SafeAreaView>
@@ -44,16 +42,11 @@ const CustomNavigation = props => {
 };
 
 const drawerNavigator = createDrawerNavigator(Routes, {
-  drawerBackgroundColor: ThemeColors.defaultColor,
   drawerType: 'front',
   hideStatusBar: false,
   lazy: true,
   unmountInactiveRoutes: true,
-  contentComponent: props => <CustomNavigation {...props} />,
-  contentOptions: {
-    activeTintColor: ThemeColors.defaultColor,
-    activeBackgroundColor: ThemeColors.primaryColor,
-  },
+  contentComponent: props => <CustomDrawerNavigation {...props} />,
   initialRouteName: 'Home',
   backBehavior: 'initialRoute',
 });
@@ -73,10 +66,6 @@ export default class Start extends Component {
   }
 
   render() {
-    return (
-      // <ThemeContext.Provider value={{ThemeConstants}}>
-      <Navigator />
-      // </ThemeContext.Provider>
-    );
+    return <Navigator />;
   }
 }

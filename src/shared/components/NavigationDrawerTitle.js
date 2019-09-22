@@ -1,14 +1,17 @@
-/* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
-import {StyleSheet, View, Dimensions} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-elements';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
   listenOrientationChange,
   removeOrientationListener,
 } from 'react-native-responsive-screen';
+import ThemeContext from '../Themes/ThemeContext';
 
-export default class Container extends Component {
+export default class NavigationDrawerTitle extends Component {
+  static contextType = ThemeContext;
+
   componentDidMount() {
     listenOrientationChange(this);
   }
@@ -20,23 +23,20 @@ export default class Container extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        flex: 1,
-        backgroundColor: '#fafafa',
+        height: hp('6%'),
         alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5,
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
       },
-      application: {
-        width: wp('100%'),
-        height: hp('100%'),
+      title: {
+        fontSize: 24,
+        color: '#fafafa',
       },
     });
 
     return (
       <View style={styles.container}>
-        <View style={styles.application}>
-          {this.props.children}
-        </View>
+        <Text style={styles.title}>{this.props.title}</Text>
       </View>
     );
   }

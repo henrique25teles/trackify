@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList, RefreshControl} from 'react-native';
-import Container from '../shared/components/Container';
 import {ListItem} from 'react-native-elements';
 import LeftAvatar from '../components/Encomendas/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
@@ -45,27 +44,20 @@ export default class Encomendas extends Component {
 
   renderItem = ({item}) => {
     return (
-      <Container>
-        <Swipeable
-          renderRightActions={this.renderRightDelete}
-          containerStyle={{
-            alignContent: 'flex-end',
-            justifyContent: 'flex-end',
-            flexDirection: 'column-reverse'}}>
-          <ListItem
-            title={item.Name}
-            subtitle={item.TrackingCode}
-            leftAvatar={LeftAvatar}
-            onPress={() =>
-              this.props.navigation.navigate('EncomendasDetalhes', {
-                data: item.Detalhes,
-              })
-            }
-            bottomDivider
-            chevron
-          />
-        </Swipeable>
-      </Container>
+      <Swipeable renderRightActions={this.renderRightDelete}>
+        <ListItem
+          title={item.Name}
+          subtitle={item.TrackingCode}
+          leftAvatar={LeftAvatar}
+          onPress={() =>
+            this.props.navigation.navigate('EncomendasDetalhes', {
+              data: item.Detalhes,
+            })
+          }
+          bottomDivider
+          chevron
+        />
+      </Swipeable>
     );
   };
 
@@ -94,7 +86,7 @@ export default class Encomendas extends Component {
 
   render() {
     return (
-      <Container>
+      <>
         <FlatList
           style={styles.ViewTeste}
           data={this.state.data}
@@ -105,7 +97,7 @@ export default class Encomendas extends Component {
           refreshControl={this.renderRefresh()}
         />
         <ButtonAdd />
-      </Container>
+      </>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ThemeColors = {
+let ThemeColors = {
   primaryColor: '#4096db',
   defaultColor: '#fafafa',
   defaultColorSecondary: '#d4d3cf',
@@ -8,107 +8,149 @@ const ThemeColors = {
   dangerColor: '#f0170c',
 };
 
-const ThemeConstants = {
-  NavigationHeader: {
-    headerStyle: {
-      backgroundColor: ThemeColors.primaryColor,
+const createTheme = themeColors => {
+  const navigationHeader = {
+    NavigationHeader: {
+      headerStyle: {
+        backgroundColor: themeColors.primaryColor,
+      },
+      headerTintColor: themeColors.defaultColor,
     },
-    headerTintColor: ThemeColors.defaultColor,
-  },
-  RoundButton: {
-    raised: true,
-    containerStyle: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 30,
-    },
-    buttonStyle: {
-      width: 56,
-      height: 56,
-      borderRadius: 30,
-      elevation: 30,
-      backgroundColor: ThemeColors.primaryColor,
-    },
-  },
-  PrimaryButton: {
-    raised: true,
-    buttonStyle: {
-      backgroundColor: ThemeColors.primaryColor,
-      elevation: 10,
-    },
-  },
-  WarningButton: {
-    raised: true,
-    buttonStyle: {
-      backgroundColor: ThemeColors.warningColor,
-      elevation: 10,
-    },
-  },
-  DangerButton: {
-    raised: true,
-    buttonStyle: {
-      backgroundColor: ThemeColors.dangerColor,
-      elevation: 10,
-    },
-  },
-  ModalDefault: {
-    container: {
-      style: {
-        flex: 1,
-        justifyContent: 'center',
+  };
+
+  const roundButton = {
+    RoundButton: {
+      raised: true,
+      containerStyle: {
         alignItems: 'center',
-      },
-    },
-    modal: {
-      backdropOpacity: 0.6,
-      animationInTiming: 800,
-      animationOutTiming: 800,
-      backdropTransitionInTiming: 800,
-      backdropTransitionOutTiming: 800,
-      useNativeDriver: true,
-      style: {
-        flex: 1,
-        flexDirection: 'column',
-      },
-    },
-    title: {
-      style: {
-        shadowColor: 'rgba(0,0,0, .4)', // IOS
-        shadowOffset: {height: 1, width: 1}, // IOS
-        shadowOpacity: 1, // IOS
-        shadowRadius: 1, //IOS
         justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        backgroundColor: ThemeColors.primaryColor,
-        elevation: 6, //Android
-        height: 50,
+        borderRadius: 30,
+      },
+      buttonStyle: {
+        width: 56,
+        height: 56,
+        borderRadius: 30,
+        elevation: 30,
+        backgroundColor: themeColors.primaryColor,
       },
     },
-    titleText: {
-      style: {
-        fontSize: 25,
+  };
+
+  const primaryButton = {
+    PrimaryButton: {
+      raised: true,
+      buttonStyle: {
+        backgroundColor: themeColors.primaryColor,
+        elevation: 10,
       },
     },
-    modalContent: {
-      style: {
-        backgroundColor: ThemeColors.defaultColor,
-        padding: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderColor: 'rgba(0, 0, 0, 0.1)',
+  };
+
+  const warningButton = {
+    WarningButton: {
+      raised: true,
+      buttonStyle: {
+        backgroundColor: themeColors.warningColor,
+        elevation: 10,
       },
     },
-  },
-  drawerMenu: {
-    activeTintColor: ThemeColors.defaultColor,
-    activeBackgroundColor: ThemeColors.primaryColor,
-  },
+  };
+
+  const dangerButton = {
+    DangerButton: {
+      raised: true,
+      buttonStyle: {
+        backgroundColor: themeColors.dangerColor,
+        elevation: 10,
+      },
+    },
+  };
+
+  const modalDefault = {
+    ModalDefault: {
+      container: {
+        style: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      },
+      modal: {
+        backdropOpacity: 0.6,
+        animationInTiming: 800,
+        animationOutTiming: 800,
+        backdropTransitionInTiming: 800,
+        backdropTransitionOutTiming: 800,
+        useNativeDriver: true,
+        style: {
+          flex: 1,
+          flexDirection: 'column',
+        },
+      },
+      title: {
+        style: {
+          shadowColor: 'rgba(0,0,0, .4)', // IOS
+          shadowOffset: {height: 1, width: 1}, // IOS
+          shadowOpacity: 1, // IOS
+          shadowRadius: 1, //IOS
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          backgroundColor: themeColors.primaryColor,
+          elevation: 6, //Android
+          height: 50,
+        },
+      },
+      titleText: {
+        style: {
+          fontSize: 25,
+        },
+      },
+      modalContent: {
+        style: {
+          backgroundColor: themeColors.defaultColor,
+          padding: 22,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 4,
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+        },
+      },
+    },
+  };
+
+  const customDrawerNavigator = {
+    CustomDrawerNavigation: {
+      DrawerNavigatorItems: {
+        activeTintColor: themeColors.defaultColor,
+        activeBackgroundColor: themeColors.primaryColor,
+      },
+    },
+  };
+
+  const drawerNavigationToolbar = {
+    DrawerNavigationToolbar: {
+      Container: {
+        style: {
+          backgroundColor: themeColors.primaryColor,
+        },
+      },
+    },
+  };
+
+  return {
+    ...navigationHeader,
+    ...roundButton,
+    ...primaryButton,
+    ...warningButton,
+    ...dangerButton,
+    ...modalDefault,
+    ...customDrawerNavigator,
+    ...drawerNavigationToolbar,
+  };
 };
 
-const ThemeContext = React.createContext({...ThemeConstants});
+const ThemeContext = React.createContext({...createTheme(ThemeColors)});
 
-export {ThemeColors};
+export {ThemeColors, createTheme};
 
 export default ThemeContext;

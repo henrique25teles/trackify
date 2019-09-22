@@ -1,19 +1,18 @@
 import React from 'react';
 import Encomendas from '../../pages/Encomendas';
 import EncomendaDetalhes from '../../pages/EncomendaDetalhes';
-import DrawerStructure from '../../shared/components/DrawerStructure';
+import NavigationDrawerLeftHeader from '../../shared/components/NavigationDrawerLeftHeader';
 import {ThemeColors} from '../../shared/Themes/ThemeContext';
+import {View} from 'react-native';
+import DrawerNavigationToolbar from '../../shared/components/DrawerNavigationToolbar';
 
 const routes = {
   Encomendas: {
     screen: Encomendas,
-    navigationOptions: ({navigation}) => ({
-      title: 'Encomendas',
-      headerLeft: <DrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: ThemeColors.primaryColor,
+    navigationOptions: ({navigation, screenProps, navigationOptions}) => ({
+      header: props => {
+        return <DrawerNavigationToolbar {...props} title="Encomendas" />;
       },
-      headerTintColor: ThemeColors.defaultColor,
     }),
   },
   EncomendasDetalhes: {

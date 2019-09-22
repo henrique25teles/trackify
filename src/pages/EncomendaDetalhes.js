@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
-import Container from '../shared/components/Container';
 
 const initialState = {
   data: [],
@@ -26,7 +25,6 @@ export default function Home(props) {
         rounded
         reverse
         icon={{name: 'check-circle', color: '#009019', type: 'font-awesome5'}}
-        onPress={() => console.log('Works!')}
         activeOpacity={0.7}
       />
     );
@@ -47,13 +45,11 @@ export default function Home(props) {
   }
 
   return (
-    <Container>
-      <FlatList
-        keyExtractor={keyExtractor}
-        data={state.data}
-        renderItem={renderItem}
-      />
-    </Container>
+    <FlatList
+      keyExtractor={keyExtractor}
+      data={state.data}
+      renderItem={renderItem}
+    />
   );
 }
 

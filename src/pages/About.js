@@ -11,7 +11,6 @@ class About extends Component {
     this.state = {};
   }
   render() {
-    console.log(this.context);
     return (
       <View>
         <Text>Essa é a tela de Sobre</Text>
