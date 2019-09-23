@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 import ModalAdd from './ModalAdd';
 import {RoundButton} from '../../shared/components/Buttons';
 import {
@@ -21,8 +21,8 @@ function ButtonAdd() {
   const styles = StyleSheet.create({
     containerStyle: {
       position: 'absolute',
-      right: wp('2%'),
-      bottom: hp('3%'),
+      right: wp('3%'),
+      bottom: StatusBar.currentHeight + hp('3%'),
     },
   });
 

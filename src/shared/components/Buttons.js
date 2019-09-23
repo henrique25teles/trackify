@@ -20,7 +20,7 @@ const RoundButton = props => {
     button: {
       width: wp('12%'),
       height: wp('12%'),
-      borderRadius: wp('12%'),
+      borderRadius: wp('12%') / 2,
       elevation: wp('12%'),
     },
   });

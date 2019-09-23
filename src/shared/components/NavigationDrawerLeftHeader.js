@@ -46,7 +46,7 @@ class NavigationDrawerLeftHeader extends Component {
     if (this.props.isBackButton) {
       return (
         <Button
-          type="outline"
+          type="clear"
           containerStyle={styles.container}
           icon={{
             name: 'back',
@@ -61,7 +61,7 @@ class NavigationDrawerLeftHeader extends Component {
     } else {
       return (
         <Button
-          type="outline"
+          type="clear"
           containerStyle={styles.container}
           icon={{
             name: 'menu',
