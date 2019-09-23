@@ -3,7 +3,7 @@ import Start from './src/Start';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import ThemeController from './src/controllers/ThemeController';
-import {LightBlue, DarkRed} from './src/shared/Themes/ThemeColors';
+import {LightBlue, DarkRed} from './src/shared/Themes/DefaultThemeColors';
 import Container from './src/shared/components/Container';
 import ThemeContext, {createTheme} from './src/shared/Themes/ThemeContext';
 
@@ -57,7 +57,7 @@ export default class App extends Component {
       return (
         <ThemeContext.Provider
           value={{
-            ...this.state.theme,
+            theme: this.state.theme,
           }}>
           <Container>
             <Start />

@@ -33,7 +33,7 @@ const CustomDrawerNavigation = props => {
         <ProfileCard />
         <DrawerNavigatorItems
           {...props}
-          {...context.CustomDrawerNavigation.DrawerNavigatorItems}
+          {...context.theme.CustomDrawerNavigation.DrawerNavigatorItems}
           renderIcon={renderIcon}
         />
       </SafeAreaView>

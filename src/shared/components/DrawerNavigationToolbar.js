@@ -37,7 +37,7 @@ export default class DrawerNavigationToolbar extends Component {
       <View
         style={[
           styles.container,
-          this.context.DrawerNavigationToolbar.Container.style,
+          this.context.theme.DrawerNavigationToolbar.Container.style,
         ]}>
         <NavigationDrawerLeftHeader {...this.props} />
         <NavigationDrawerTitle {...this.props} />

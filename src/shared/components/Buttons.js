@@ -28,26 +28,119 @@ const RoundButton = props => {
   return (
     <Button
       raised
-      containerStyle={styles.container}
-      buttonStyle={[styles.button, context.RoundButton.buttonStyle]}
-      {...props}
+      icon={props.icon || null}
+      containerStyle={[styles.container, props.containerStyle]}
+      buttonStyle={[
+        styles.button,
+        props.buttonStyle,
+        context.theme.RoundButton.buttonStyle,
+      ]}
+      onFocus={props.onFocus || null}
+      onBlur={props.onFocus || null}
+      onLayout={props.onLayout || null}
+      onLongPress={props.onLongPress || null}
+      onPress={props.onPress || null}
+      onPressIn={props.onPressIn || null}
+      onPressOut={props.onPressOut || null}
+      style={[props.style]}
     />
   );
 };
 
 const PrimaryButton = props => {
   const context = useContext(ThemeContext);
-  return <Button {...context.PrimaryButton} {...props} />;
+
+  const styles = StyleSheet.create({
+    button: {
+      elevation: 10,
+    },
+  });
+
+  return (
+    <Button
+      raised
+      icon={props.icon || null}
+      title={props.title}
+      buttonStyle={[
+        styles.button,
+        context.theme.PrimaryButton.buttonStyle,
+        props.buttonStyle,
+      ]}
+      containerStyle={[props.containerStyle]}
+      onFocus={props.onFocus || null}
+      onBlur={props.onFocus || null}
+      onLayout={props.onLayout || null}
+      onLongPress={props.onLongPress || null}
+      onPress={props.onPress || null}
+      onPressIn={props.onPressIn || null}
+      onPressOut={props.onPressOut || null}
+      style={[props.style]}
+    />
+  );
 };
 
 const WarningButton = props => {
   const context = useContext(ThemeContext);
-  return <Button {...context.WarningButton} {...props} />;
+
+  const styles = StyleSheet.create({
+    button: {
+      elevation: 10,
+    },
+  });
+
+  return (
+    <Button
+      raised
+      icon={props.icon || null}
+      title={props.title}
+      buttonStyle={[
+        context.theme.WarningButton.buttonStyle,
+        styles.button,
+        props.buttonStyle,
+      ]}
+      containerStyle={[props.containerStyle]}
+      onFocus={props.onFocus || null}
+      onBlur={props.onFocus || null}
+      onLayout={props.onLayout || null}
+      onLongPress={props.onLongPress || null}
+      onPress={props.onPress || null}
+      onPressIn={props.onPressIn || null}
+      onPressOut={props.onPressOut || null}
+      style={[props.style]}
+    />
+  );
 };
 
 const DangerButton = props => {
   const context = useContext(ThemeContext);
-  return <Button {...context.DangerButton} {...props} />;
+
+  const styles = StyleSheet.create({
+    button: {
+      elevation: 10,
+    },
+  });
+
+  return (
+    <Button
+      raised
+      icon={props.icon || null}
+      title={props.title}
+      buttonStyle={[
+        context.theme.DangerButton.buttonStyle,
+        styles.button,
+        props.buttonStyle,
+      ]}
+      containerStyle={[props.containerStyle]}
+      onFocus={props.onFocus || null}
+      onBlur={props.onFocus || null}
+      onLayout={props.onLayout || null}
+      onLongPress={props.onLongPress || null}
+      onPress={props.onPress || null}
+      onPressIn={props.onPressIn || null}
+      onPressOut={props.onPressOut || null}
+      style={[props.style]}
+    />
+  );
 };
 
 export {RoundButton, PrimaryButton, WarningButton, DangerButton};
