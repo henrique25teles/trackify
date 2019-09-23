@@ -31,14 +31,14 @@ class NavigationDrawerLeftHeader extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        height: hp('6%'),
-        width: wp('8%'),
+        height: hp('8%'),
+        width: wp('12%'),
         alignContent: 'center',
         justifyContent: 'center',
       },
       icon: {
-        height: hp('5%'),
-        width: wp('5%'),
+        height: hp('8%'),
+        width: wp('12%'),
         //resizeMode: 'center',
       },
     });
@@ -51,7 +51,7 @@ class NavigationDrawerLeftHeader extends Component {
           icon={{
             name: 'back',
             type: 'antdesign',
-            size: wp('3.9%'),
+            size: wp('5%'),
             color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
           }}
           iconStyle={styles.icon}
@@ -66,7 +66,7 @@ class NavigationDrawerLeftHeader extends Component {
           icon={{
             name: 'menu',
             type: 'entypo',
-            size: wp('3.9%'),
+            size: wp('5%'),
             color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
           }}
           iconStyle={styles.icon}

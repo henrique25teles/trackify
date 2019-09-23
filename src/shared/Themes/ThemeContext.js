@@ -10,6 +10,12 @@ const createTheme = themeColors => {
     },
   };
 
+  const statusBar = {
+    StatusBar: {
+      backgroundColor: themeColors.primaryColor,
+    },
+  };
+
   const roundButton = {
     RoundButton: {
       buttonStyle: {
@@ -77,6 +83,7 @@ const createTheme = themeColors => {
 
   return {
     ...container,
+    ...statusBar,
     ...roundButton,
     ...primaryButton,
     ...warningButton,

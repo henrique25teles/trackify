@@ -28,7 +28,7 @@ export default class DrawerNavigationToolbar extends Component {
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        height: hp('6%'),
+        height: hp('8%'),
         width: wp('100%'),
       },
     });

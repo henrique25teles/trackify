@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 import ModalAdd from './ModalAdd';
 import {RoundButton} from '../../shared/components/Buttons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 function ButtonAdd() {
   const [modalVisible, setstate] = useState(false);
@@ -14,6 +18,14 @@ function ButtonAdd() {
     setstate(false);
   }
 
+  const styles = StyleSheet.create({
+    containerStyle: {
+      position: 'absolute',
+      right: wp('2%'),
+      bottom: hp('3%'),
+    },
+  });
+
   return (
     <>
       <ModalAdd modalVisible={modalVisible} onCloseModal={CloseModal} />
@@ -25,13 +37,5 @@ function ButtonAdd() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    position: 'absolute',
-    right: 20,
-    bottom: 20,
-  },
-});
 
 export default ButtonAdd;

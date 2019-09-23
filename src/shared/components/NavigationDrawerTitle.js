@@ -23,7 +23,7 @@ export default class NavigationDrawerTitle extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        height: hp('6%'),
+        height: hp('8%'),
         alignItems: 'center',
         justifyContent: 'flex-start',
         flexDirection: 'row',

@@ -15,13 +15,13 @@ const RoundButton = props => {
     container: {
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: wp('10%'),
+      borderRadius: wp('12%'),
     },
     button: {
-      width: wp('10%'),
-      height: wp('10%'),
-      borderRadius: wp('10%'),
-      elevation: wp('10%'),
+      width: wp('12%'),
+      height: wp('12%'),
+      borderRadius: wp('12%'),
+      elevation: wp('12%'),
     },
   });
 

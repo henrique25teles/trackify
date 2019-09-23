@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StatusBar} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -27,6 +27,7 @@ export default class Container extends Component {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
+        paddingTop: StatusBar.currentHeight,
       },
       application: {
         width: wp('100%'),
@@ -35,11 +36,14 @@ export default class Container extends Component {
     });
 
     return (
-      <View style={[styles.container, this.context.theme.Container.style]}>
-        <View style={styles.application}>
-          {this.props.children}
+      <>
+        <StatusBar backgroundColor={this.context.theme.StatusBar.backgroundColor} />
+        <View style={[styles.container, this.context.theme.Container.style]}>
+          <View style={styles.application}>
+            {this.props.children}
+          </View>
         </View>
-      </View>
+      </>
     );
   }
 }
