@@ -70,6 +70,9 @@ const createTheme = themeColors => {
         },
       },
     },
+    NavigationDrawerLeftHeader: {
+      iconColor: themeColors.defaultColor,
+    },
   };
 
   return {

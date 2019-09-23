@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {Button} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
 import {
   widthPercentageToDP as wp,
@@ -23,6 +24,10 @@ class NavigationDrawerLeftHeader extends Component {
     this.props.navigation.toggleDrawer();
   };
 
+  goBack = () => {
+    this.props.navigation.pop();
+  };
+
   render() {
     const styles = StyleSheet.create({
       container: {
@@ -31,24 +36,44 @@ class NavigationDrawerLeftHeader extends Component {
         alignContent: 'center',
         justifyContent: 'center',
       },
-      image: {
+      icon: {
         height: hp('5%'),
         width: wp('5%'),
-        marginLeft: wp('1%'),
-        resizeMode: 'center',
+        //resizeMode: 'center',
       },
     });
 
-    return (
-      <TouchableOpacity
-        style={styles.container}
-        onPress={this.toggleDrawer.bind(this)}>
-        <Image
-          style={styles.image}
-          source={require('../../images/drawer.png')}
+    if (this.props.isBackButton) {
+      return (
+        <Button
+          type="outline"
+          containerStyle={styles.container}
+          icon={{
+            name: 'back',
+            type: 'antdesign',
+            size: wp('3.9%'),
+            color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
+          }}
+          iconStyle={styles.icon}
+          onPress={this.goBack.bind(this)}
         />
-      </TouchableOpacity>
-    );
+      );
+    } else {
+      return (
+        <Button
+          type="outline"
+          containerStyle={styles.container}
+          icon={{
+            name: 'menu',
+            type: 'entypo',
+            size: wp('3.9%'),
+            color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
+          }}
+          iconStyle={styles.icon}
+          onPress={this.toggleDrawer.bind(this)}
+        />
+      );
+    }
   }
 }
 
