@@ -24,7 +24,7 @@ export default class App extends Component {
   };
 
   changeTheme = theme => {
-    const newTheme = this.context.createTheme(theme);
+    const newTheme = this.context.createTheme(theme.ColorScheme);
     this.setState({theme: newTheme});
   };
 
@@ -58,6 +58,7 @@ export default class App extends Component {
         <ThemeContext.Provider
           value={{
             theme: this.state.theme,
+            changeTheme: this.changeTheme.bind(this),
           }}>
           <Container>
             <Start />

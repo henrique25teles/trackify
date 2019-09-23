@@ -12,6 +12,11 @@ export default class ThemeController {
 
   static async _getAll() {
     const all = await global.storage.getAllDataForKey(Storage).then(themes => {
+      // const toModelThemes = themes.map(theme => {
+      //   return new ThemeViewModel({
+
+      //   });
+      // })
       return themes;
     });
 
