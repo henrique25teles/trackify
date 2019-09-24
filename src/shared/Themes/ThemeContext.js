@@ -21,6 +21,7 @@ const createTheme = themeColors => {
       buttonStyle: {
         backgroundColor: themeColors.primaryColor,
       },
+      iconColor: themeColors.defaultColor,
     },
   };
 

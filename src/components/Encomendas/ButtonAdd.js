@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet} from 'react-native';
 import ModalAdd from './ModalAdd';
 import {RoundButton} from '../../shared/components/Buttons';
 import {
@@ -30,7 +30,7 @@ function ButtonAdd() {
     <>
       <ModalAdd modalVisible={modalVisible} onCloseModal={CloseModal} />
       <RoundButton
-        icon={{name: 'add'}}
+        icon={{name: 'ios-add-circle-outline', type: 'ionicon'}}
         onPress={AddEncomenda}
         containerStyle={styles.containerStyle}
       />
