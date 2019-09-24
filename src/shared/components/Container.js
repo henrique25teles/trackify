@@ -28,6 +28,7 @@ export default class Container extends Component {
         justifyContent: 'center',
         borderRadius: 5,
         paddingTop: StatusBar.currentHeight,
+        paddingBottom: StatusBar.currentHeight,
       },
       application: {
         width: wp('100%'),

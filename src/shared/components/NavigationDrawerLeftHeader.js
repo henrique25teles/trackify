@@ -47,6 +47,7 @@ class NavigationDrawerLeftHeader extends Component {
       return (
         <Button
           type="clear"
+          TouchableComponent={TouchableOpacity}
           containerStyle={styles.container}
           icon={{
             name: 'back',
@@ -62,6 +63,7 @@ class NavigationDrawerLeftHeader extends Component {
       return (
         <Button
           type="clear"
+          TouchableComponent={TouchableOpacity}
           containerStyle={styles.container}
           icon={{
             name: 'menu',

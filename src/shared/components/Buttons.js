@@ -5,26 +5,25 @@ import {Button} from 'react-native-elements';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-  listenOrientationChange,
-  removeOrientationListener,
 } from 'react-native-responsive-screen';
 
 const RoundButton = props => {
   const context = useContext(ThemeContext);
+  const widthPercent = Math.round(wp('12%'));
   const styles = StyleSheet.create({
     container: {
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: wp('12%'),
+      borderRadius: Math.floor(widthPercent / 2),
     },
     button: {
-      width: wp('12%'),
-      height: wp('12%'),
-      borderRadius: wp('12%') / 2,
-      elevation: wp('12%'),
+      width: widthPercent,
+      height: widthPercent,
+      borderRadius: Math.floor(widthPercent / 2),
+      elevation: widthPercent,
     },
   });
-
+  console.log(wp('12%'));
   return (
     <Button
       raised

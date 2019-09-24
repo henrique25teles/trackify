@@ -22,7 +22,7 @@ function ButtonAdd() {
     containerStyle: {
       position: 'absolute',
       right: wp('3%'),
-      bottom: StatusBar.currentHeight + hp('3%'),
+      bottom: hp('3%'),
     },
   });
 
