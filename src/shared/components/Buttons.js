@@ -31,7 +31,7 @@ const RoundButton = props => {
       height: widthPercent,
     },
   });
-  console.log(wp('12%'));
+
   return (
     <Button
       raised

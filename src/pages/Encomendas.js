@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList, RefreshControl} from 'react-native';
-import {ListItem} from 'react-native-elements';
 import LeftAvatar from '../components/Encomendas/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
 import ListSearchHeader from '../shared/components/ListSearchHeader';
 import ButtonAdd from '../components/Encomendas/ButtonAdd';
 import EncomendaController from '../controllers/EncomendaController';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import ListItemCommon, {
+  DeleteSideButton,
+} from '../shared/components/ListItemCommon';
 
 export default class Encomendas extends Component {
   constructor(props) {
@@ -22,42 +23,27 @@ export default class Encomendas extends Component {
 
   keyExtractor = (item, index) => index.toString();
 
-  renderRightDelete = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#ff0000',
-          height: '100%',
-        }}>
-        <Text
-          style={{
-            flex: 1,
-            color: '#fafafa',
-            fontSize: 30,
-          }}>
-          Deleta saporra
-        </Text>
-      </View>
-    );
+  renderRightActions = item => {
+    return <DeleteSideButton onDelete={() => this.deleteEncomenda(item.Id)} />;
+  };
+
+  deleteEncomenda = async id => {
+    await EncomendaController._delete(id);
   };
 
   renderItem = ({item}) => {
     return (
-      <Swipeable renderRightActions={this.renderRightDelete}>
-        <ListItem
-          title={item.Name}
-          subtitle={item.TrackingCode}
-          leftAvatar={LeftAvatar}
-          onPress={() =>
-            this.props.navigation.navigate('EncomendasDetalhes', {
-              data: item.Detalhes,
-            })
-          }
-          bottomDivider
-          chevron
-        />
-      </Swipeable>
+      <ListItemCommon
+        renderRightActions={this.renderRightActions(item)}
+        title={item.Name}
+        subtitle={item.TrackingCode}
+        leftAvatar={LeftAvatar}
+        onPress={() =>
+          this.props.navigation.navigate('EncomendasDetalhes', {
+            data: item.Detalhes,
+          })
+        }
+      />
     );
   };
 

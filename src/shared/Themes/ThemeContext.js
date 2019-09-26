@@ -82,6 +82,17 @@ const createTheme = themeColors => {
     },
   };
 
+  const deleteSideButton = {
+    DeleteSideButton: {
+      container: {
+        backgroundColor: themeColors.dangerColor,
+      },
+      icon: {
+        color: themeColors.defaultColor,
+      },
+    },
+  };
+
   return {
     ...container,
     ...statusBar,
@@ -92,6 +103,7 @@ const createTheme = themeColors => {
     ...modalDefault,
     ...customDrawerNavigator,
     ...drawerNavigationToolbar,
+    ...deleteSideButton,
   };
 };
 
