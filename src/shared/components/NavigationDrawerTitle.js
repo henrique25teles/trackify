@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
+import propTypes from 'prop-types';
 import {Text} from 'react-native-elements';
 import {
   widthPercentageToDP as wp,
@@ -11,6 +12,9 @@ import ThemeContext from '../Themes/ThemeContext';
 
 export default class NavigationDrawerTitle extends Component {
   static contextType = ThemeContext;
+  static propTypes = {
+    title: propTypes.string.isRequired,
+  };
 
   componentDidMount() {
     listenOrientationChange(this);

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import propTypes from 'prop-types';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
 import {
@@ -11,6 +12,9 @@ import {
 
 class NavigationDrawerLeftHeader extends Component {
   static contextType = ThemeContext;
+  static propTypes = {
+    isBackButton: propTypes.bool.isRequired,
+  };
 
   componentDidMount() {
     listenOrientationChange(this);
@@ -39,7 +43,8 @@ class NavigationDrawerLeftHeader extends Component {
       icon: {
         height: hp('8%'),
         width: wp('12%'),
-        //resizeMode: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
       },
     });
 
