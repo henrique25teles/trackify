@@ -8,7 +8,13 @@ const routes = {
     screen: ThemesList,
     navigationOptions: ({navigation, screenProps, navigationOptions}) => ({
       header: props => {
-        return <DrawerNavigationToolbar {...props} title="Temas" />;
+        return (
+          <DrawerNavigationToolbar
+            {...props}
+            title="Temas"
+            isBackButton={false}
+          />
+        );
       },
     }),
   },
