@@ -5420,7 +5420,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5560,13 +5560,6 @@ react-native-reanimated@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.2.0.tgz#9219227a52a5dfa4d34c324596d6726ccd874293"
   integrity sha512-vkWRHrPK5qfHP/ZawlRoo38oeYe9NZaaOH/lmFxRcsKzaSK6x3H5ZPXI8lK6MfTLveqwo1QhJje3zIKXO4nQQw==
-
-react-native-responsive-layout@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-responsive-layout/-/react-native-responsive-layout-1.2.0.tgz#ad28b6602bfdd0e7773493c76eb807dc840192db"
-  integrity sha512-chzbl5ogy/N94pxnCbLQ3Ru8pS2FTxdPPDzP52reU/rdp2G6bTXvfM00MsUDDEffHrbPtWccBXnrn1CHi1Q9pg==
-  dependencies:
-    prop-types "^15.6.0"
 
 react-native-responsive-screen@1.2.2:
   version "1.2.2"
