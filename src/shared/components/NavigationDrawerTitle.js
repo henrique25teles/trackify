@@ -33,8 +33,8 @@ export default class NavigationDrawerTitle extends Component {
         flexDirection: 'row',
       },
       title: {
-        fontSize: 24,
-        color: '#fafafa',
+        fontSize: hp('2.5%'),
+        color: this.context.theme.defaultColor,
       },
     });
 

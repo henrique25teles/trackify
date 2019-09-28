@@ -33,7 +33,8 @@ const CustomDrawerNavigation = props => {
         <ProfileCard />
         <DrawerNavigatorItems
           {...props}
-          {...context.theme.CustomDrawerNavigation.DrawerNavigatorItems}
+          activeTintColor={context.theme.defaultColor}
+          activeBackgroundColor={context.theme.primaryColor}
           renderIcon={renderIcon}
         />
       </SafeAreaView>

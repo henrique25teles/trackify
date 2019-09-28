@@ -30,15 +30,12 @@ export default class DrawerNavigationToolbar extends Component {
         justifyContent: 'flex-start',
         height: hp('8%'),
         width: wp('100%'),
+        backgroundColor: this.context.theme.primaryColor,
       },
     });
 
     return (
-      <View
-        style={[
-          styles.container,
-          this.context.theme.DrawerNavigationToolbar.Container.style,
-        ]}>
+      <View style={[styles.container]}>
         <NavigationDrawerLeftHeader {...this.props} />
         <NavigationDrawerTitle {...this.props} />
         <NavigationDrawerRightHeader {...this.props} />

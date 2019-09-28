@@ -29,6 +29,7 @@ export default class Container extends Component {
         borderRadius: 5,
         paddingTop: StatusBar.currentHeight,
         paddingBottom: StatusBar.currentHeight,
+        backgroundColor: this.context.theme.defaultColor,
       },
       application: {
         width: wp('100%'),
@@ -38,8 +39,8 @@ export default class Container extends Component {
 
     return (
       <>
-        <StatusBar backgroundColor={this.context.theme.StatusBar.backgroundColor} />
-        <View style={[styles.container, this.context.theme.Container.style]}>
+        <StatusBar backgroundColor={this.context.theme.primaryColor} />
+        <View style={[styles.container]}>
           <View style={styles.application}>
             {this.props.children}
           </View>

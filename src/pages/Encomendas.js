@@ -34,7 +34,7 @@ export default class Encomendas extends Component {
   renderItem = ({item}) => {
     return (
       <ListItemCommon
-        renderRightActions={this.renderRightActions(item)}
+        renderRightActions={() => this.renderRightActions(item)}
         title={item.Name}
         subtitle={item.TrackingCode}
         leftAvatar={LeftAvatar}

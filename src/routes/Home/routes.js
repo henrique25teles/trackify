@@ -8,7 +8,13 @@ const routes = {
     screen: Encomendas,
     navigationOptions: ({navigation, screenProps, navigationOptions}) => ({
       header: props => {
-        return <DrawerNavigationToolbar {...props} title="Encomendas" />;
+        return (
+          <DrawerNavigationToolbar
+            {...props}
+            isBackButton={false}
+            title="Encomendas"
+          />
+        );
       },
     }),
   },

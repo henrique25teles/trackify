@@ -13,6 +13,7 @@ import {
 class NavigationDrawerLeftHeader extends Component {
   static contextType = ThemeContext;
   static propTypes = {
+    navigation: propTypes.any.isRequired,
     isBackButton: propTypes.bool.isRequired,
   };
 
@@ -58,7 +59,7 @@ class NavigationDrawerLeftHeader extends Component {
             name: 'back',
             type: 'antdesign',
             size: wp('5%'),
-            color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
+            color: this.context.theme.defaultColor,
           }}
           iconStyle={styles.icon}
           onPress={this.goBack.bind(this)}
@@ -74,7 +75,7 @@ class NavigationDrawerLeftHeader extends Component {
             name: 'menu',
             type: 'entypo',
             size: wp('5%'),
-            color: this.context.theme.NavigationDrawerLeftHeader.iconColor,
+            color: this.context.theme.defaultColor,
           }}
           iconStyle={styles.icon}
           onPress={this.toggleDrawer.bind(this)}

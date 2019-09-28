@@ -1,4 +1,5 @@
 import React, {Component, useContext} from 'react';
+import propTypes from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {ListItem, Icon} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
@@ -10,7 +11,7 @@ import {
   removeOrientationListener,
 } from 'react-native-responsive-screen';
 
-const DeleteSideButton = props => {
+function DeleteSideButton(props) {
   const context = useContext(ThemeContext);
 
   const styles = StyleSheet.create({
@@ -18,21 +19,24 @@ const DeleteSideButton = props => {
       justifyContent: 'center',
       alignItems: 'center',
       width: wp('16%'),
+      backgroundColor: context.theme.dangerColor,
     },
   });
 
   return (
-    <TouchableOpacity
-      style={[context.theme.DeleteSideButton.container, styles.container]}
-      onPress={props.onDelete}>
+    <TouchableOpacity style={[styles.container]} onPress={props.onDelete}>
       <Icon
         name="trash"
         type="evilicon"
         size={wp('10%')}
-        color={context.theme.DeleteSideButton.icon.color}
+        color={context.theme.defaultColor}
       />
     </TouchableOpacity>
   );
+}
+
+DeleteSideButton.propTypes = {
+  onDelete: propTypes.func.isRequired,
 };
 
 class ListItemCommon extends Component {

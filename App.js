@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import ThemeController from './src/controllers/ThemeController';
 import {LightBlue, DarkRed} from './src/shared/Themes/DefaultThemeColors';
 import Container from './src/shared/components/Container';
-import ThemeContext, {createTheme} from './src/shared/Themes/ThemeContext';
+import ThemeContext from './src/shared/Themes/ThemeContext';
 
 global.storage = new Storage({
   size: 3000,
@@ -19,7 +19,7 @@ export default class App extends Component {
 
   state = {
     themeColors: LightBlue,
-    theme: createTheme(LightBlue.ColorScheme),
+    theme: this.context.createTheme(LightBlue.ColorScheme),
     isLoading: true,
   };
 
