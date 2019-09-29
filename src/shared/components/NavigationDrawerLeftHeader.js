@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
-import {wp, hp} from './Responsive';
+import {wp} from './Responsive';
 
 class NavigationDrawerLeftHeader extends Component {
   static contextType = ThemeContext;
@@ -23,14 +23,12 @@ class NavigationDrawerLeftHeader extends Component {
   render() {
     const styles = StyleSheet.create({
       container: {
-        height: hp('8%'),
-        width: wp('12%'),
+        height: '100%',
+        width: '14%',
         alignContent: 'center',
         justifyContent: 'center',
       },
       icon: {
-        height: hp('8%'),
-        width: wp('12%'),
         justifyContent: 'center',
         alignItems: 'center',
       },

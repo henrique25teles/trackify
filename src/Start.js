@@ -61,11 +61,6 @@ const styles = StyleSheet.create({
 const Navigator = createAppContainer(drawerNavigator);
 
 export default class Start extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return <Navigator />;
   }

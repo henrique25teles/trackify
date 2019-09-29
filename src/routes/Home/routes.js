@@ -1,11 +1,11 @@
 import React from 'react';
-import Encomendas from '../../pages/Encomendas';
-import EncomendaDetalhes from '../../pages/EncomendaDetalhes';
+import Orders from '../../pages/Orders';
+import OrderDetails from '../../pages/OrderDetails';
 import DrawerNavigationToolbar from '../../shared/components/DrawerNavigationToolbar';
 
 const routes = {
-  Encomendas: {
-    screen: Encomendas,
+  Orders: {
+    screen: Orders,
     navigationOptions: ({navigation, screenProps, navigationOptions}) => ({
       header: props => {
         return (
@@ -18,8 +18,8 @@ const routes = {
       },
     }),
   },
-  EncomendasDetalhes: {
-    screen: EncomendaDetalhes,
+  OrderDetails: {
+    screen: OrderDetails,
     navigationOptions: ({navigation}) => ({
       title: 'Detalhes',
       header: props => (

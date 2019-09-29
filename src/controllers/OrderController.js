@@ -1,8 +1,6 @@
-import EncomendaViewModel, {
-  Storage,
-} from '../models/Encomenda/EncomendaViewModel';
+import OrderViewModel, {Storage} from '../models/Order/OrderViewModel';
 import {Alert} from 'react-native';
-import EncomendaDetalhesViewModel from '../models/Encomenda/EncomendaDetalhesViewModel';
+import OrderDetailViewModel from '../models/Order/OrderDetailViewModel';
 
 const AlertaErro = mensagem => {
   Alert.alert('Erro', mensagem, [{text: 'Ok'}]);
@@ -22,7 +20,7 @@ const onError = err => {
 };
 
 const toModel = item => {
-  return new EncomendaViewModel({
+  return new OrderViewModel({
     Id: String(item.Id),
     Name: String(item.Name),
     Delivered: item.Delivered,
@@ -32,7 +30,7 @@ const toModel = item => {
 };
 
 const toModelDetalhes = detalhe => {
-  return new EncomendaDetalhesViewModel({
+  return new OrderDetailViewModel({
     Id: String(detalhe.Id),
     LastDate: new Date(detalhe.LastDate),
     Local: String(detalhe.Local),

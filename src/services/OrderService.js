@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Utilidade from '../shared/service/Utilidade';
-import EncomendaViewModel from '../models/Encomenda/EncomendaViewModel';
-import EncomendaDetalhesViewModel from '../models/Encomenda/EncomendaDetalhesViewModel';
+import OrderViewModel from '../models/Order/OrderViewModel';
+import OrderDetailViewModel from '../models/Order/OrderDetailViewModel';
 
 const GetObjetoRastreioByHtml = element => {
   const itemArray = element.split('\n');
@@ -42,7 +42,7 @@ const MontaObjetoRastreio = response => {
 };
 
 const MontaDetalhesObjetoRastreio = detalhe => {
-  return new EncomendaDetalhesViewModel({
+  return new OrderDetailViewModel({
     Id: String(Utilidade.CreateGuid()),
     LastDate: new Date(),
     Local: String(detalhe.Local),
@@ -71,7 +71,7 @@ export default {
         )
         .then(MontaObjetoRastreio)
         .then(data => {
-          return new EncomendaViewModel({
+          return new OrderViewModel({
             Id: String(Utilidade.CreateGuid()),
             Name: String(nomeEncomenda),
             TrackingCode: String(codigoRastreio),

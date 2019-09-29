@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList, RefreshControl} from 'react-native';
-import LeftAvatar from '../components/Encomendas/LeftAvatar';
+import {StyleSheet, FlatList, RefreshControl} from 'react-native';
+import LeftAvatar from '../components/Order/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
 import ListSearchHeader from '../shared/components/ListSearchHeader';
-import ButtonAdd from '../components/Encomendas/ButtonAdd';
-import EncomendaController from '../controllers/EncomendaController';
+import ButtonAdd from '../components/Order/ButtonAdd';
+import OrderController from '../controllers/OrderController';
 import ListItemCommon, {
   DeleteSideButton,
 } from '../shared/components/ListItemCommon';
 
-export default class Encomendas extends Component {
+export default class Orders extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +28,7 @@ export default class Encomendas extends Component {
   };
 
   deleteEncomenda = async id => {
-    await EncomendaController._delete(id);
+    await OrderController._delete(id);
   };
 
   renderItem = ({item}) => {
@@ -39,7 +39,7 @@ export default class Encomendas extends Component {
         subtitle={item.TrackingCode}
         leftAvatar={LeftAvatar}
         onPress={() =>
-          this.props.navigation.navigate('EncomendasDetalhes', {
+          this.props.navigation.navigate('OrderDetails', {
             data: item.Detalhes,
           })
         }
@@ -63,7 +63,7 @@ export default class Encomendas extends Component {
   carregaDadosRastreio = async () => {
     await this.setState({refreshing: true});
 
-    const data = await EncomendaController._getAll();
+    const data = await OrderController._getAll();
     await this.setState({
       data: data,
       refreshing: false,

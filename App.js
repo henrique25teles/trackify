@@ -55,6 +55,8 @@ export default class App extends Component {
       this.LoadScreen();
       return <Container />;
     } else {
+      console.log(Dimensions.get('window'));
+      console.log(PixelRatio.get());
       return (
         <ThemeContext.Provider
           value={{

@@ -2,17 +2,17 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
-import Encomendas from './Encomendas';
+import Orders from './Orders';
 
 const RoutesConfig = {
   Todos: {
-    screen: () => <Encomendas />,
+    screen: () => <Orders />,
   },
   Pendentes: {
-    screen: () => <Encomendas />,
+    screen: () => <Orders />,
   },
   Entregues: {
-    screen: () => <Encomendas />,
+    screen: () => <Orders />,
   },
 };
 
