@@ -2,10 +2,7 @@ import React, {useContext} from 'react';
 import ThemeContext from '../Themes/ThemeContext';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {wp, hp} from './Responsive';
 
 const RoundButton = props => {
   const context = useContext(ThemeContext);

@@ -3,23 +3,10 @@ import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-elements';
 import Modal from 'react-native-modal';
 import ThemeContext from '../Themes/ThemeContext';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange,
-  removeOrientationListener,
-} from 'react-native-responsive-screen';
+import {wp, hp} from './Responsive';
 
 class ModalDefault extends Component {
   static contextType = ThemeContext;
-
-  componentDidMount() {
-    listenOrientationChange(this);
-  }
-
-  componentWillUnMount() {
-    removeOrientationListener();
-  }
 
   render() {
     const responsiveStyle = StyleSheet.create({

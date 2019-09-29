@@ -4,12 +4,7 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import {ListItem, Icon} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange,
-  removeOrientationListener,
-} from 'react-native-responsive-screen';
+import {wp, hp} from './Responsive';
 
 function DeleteSideButton(props) {
   const context = useContext(ThemeContext);
@@ -41,14 +36,6 @@ DeleteSideButton.propTypes = {
 
 class ListItemCommon extends Component {
   static contextType = ThemeContext;
-
-  componentDidMount() {
-    listenOrientationChange(this);
-  }
-
-  componentWillUnMount() {
-    removeOrientationListener();
-  }
 
   render() {
     const styles = StyleSheet.create({

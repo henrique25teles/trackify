@@ -3,12 +3,7 @@ import propTypes from 'prop-types';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import ThemeContext from '../Themes/ThemeContext';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  listenOrientationChange,
-  removeOrientationListener,
-} from 'react-native-responsive-screen';
+import {wp, hp} from './Responsive';
 
 class NavigationDrawerLeftHeader extends Component {
   static contextType = ThemeContext;
@@ -16,14 +11,6 @@ class NavigationDrawerLeftHeader extends Component {
     navigation: propTypes.any.isRequired,
     isBackButton: propTypes.bool.isRequired,
   };
-
-  componentDidMount() {
-    listenOrientationChange(this);
-  }
-
-  componentWillUnMount() {
-    removeOrientationListener();
-  }
 
   toggleDrawer = () => {
     this.props.navigation.toggleDrawer();

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Dimensions, PixelRatio} from 'react-native';
 import Start from './src/Start';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
