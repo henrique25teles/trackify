@@ -29,15 +29,24 @@ function ModalAdd(props) {
   }
 
   async function addRastreio() {
-    const rastreio = await OrderService.GetRastreioCorreios(
-      state.trackingCode,
-      state.name,
-    );
-    if (rastreio.result) {
-      await OrderController._storeData(rastreio.encomenda);
-      setModalVisible(false);
-    } else {
-      await Alert.alert('', rastreio.message);
+    try {
+      console.log(state.trackingCode);
+      const rastreio = await OrderService.GetRastreioCorreios(
+        state.trackingCode,
+        state.name,
+      );
+
+      console.log(rastreio);
+      if (rastreio.result) {
+        console.log(rastreio.result);
+        await OrderController._storeData(rastreio.encomenda);
+        setModalVisible(false);
+      } else {
+        await Alert.alert('', rastreio.message);
+        setModalVisible(false);
+      }
+    } catch (error) {
+      await Alert.alert('', error.message);
       setModalVisible(false);
     }
   }

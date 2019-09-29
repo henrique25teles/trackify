@@ -1,6 +1,6 @@
-import OrderViewModel, {Storage} from '../models/Order/OrderViewModel';
+import Order, {Storage} from '../models/Order/Order';
 import {Alert} from 'react-native';
-import OrderDetailViewModel from '../models/Order/OrderDetailViewModel';
+import OrderDetail from '../models/Order/OrderDetail';
 
 const AlertaErro = mensagem => {
   Alert.alert('Erro', mensagem, [{text: 'Ok'}]);
@@ -20,7 +20,7 @@ const onError = err => {
 };
 
 const toModel = item => {
-  return new OrderViewModel({
+  return new Order({
     Id: String(item.Id),
     Name: String(item.Name),
     Delivered: item.Delivered,
@@ -30,7 +30,7 @@ const toModel = item => {
 };
 
 const toModelDetalhes = detalhe => {
-  return new OrderDetailViewModel({
+  return new OrderDetail({
     Id: String(detalhe.Id),
     LastDate: new Date(detalhe.LastDate),
     Local: String(detalhe.Local),
@@ -41,35 +41,22 @@ const toModelDetalhes = detalhe => {
 
 export default {
   _storeData: async obj => {
+    console.log(obj);
+    console.log(obj.id);
+    console.log(Storage);
     await global.storage.save({
       key: Storage,
       id: obj.Id,
       data: obj,
     });
-    await global.storage
-      .load({
-        key: Storage,
-        id: obj.Id,
-        autoSync: true,
-        syncInBackground: true,
-      })
-      .then(ret => {
-        return ret;
-      })
-      .catch(onError);
   },
   _retrieveData: async id => {
-    var data = await global.storage
-      .load({
-        key: Storage,
-        id: id,
-        autoSync: true,
-        syncInBackground: true,
-      })
-      .then(ret => {
-        return ret;
-      })
-      .catch(onError);
+    var data = await global.storage.load({
+      key: Storage,
+      id: id,
+      autoSync: true,
+      syncInBackground: true,
+    });
 
     return toModel(data);
   },

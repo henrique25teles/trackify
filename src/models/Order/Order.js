@@ -1,5 +1,5 @@
 import {ObjectModel, ArrayModel} from 'objectmodel';
-import OrderDetailViewModel from './OrderDetailViewModel';
+import OrderDetail from './OrderDetail';
 
 const Storage = '@Orders';
 
@@ -10,5 +10,5 @@ export default ObjectModel({
   Name: String,
   Delivered: Boolean,
   TrackingCode: String,
-  Detalhes: ArrayModel(OrderDetailViewModel),
+  Detalhes: ArrayModel(OrderDetail),
 });

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Utilidade from '../shared/service/Utilidade';
-import OrderViewModel from '../models/Order/OrderViewModel';
-import OrderDetailViewModel from '../models/Order/OrderDetailViewModel';
+import Order from '../models/Order/Order';
+import OrderDetail from '../models/Order/OrderDetail';
 
 const GetObjetoRastreioByHtml = element => {
   const itemArray = element.split('\n');
@@ -42,7 +42,7 @@ const MontaObjetoRastreio = response => {
 };
 
 const MontaDetalhesObjetoRastreio = detalhe => {
-  return new OrderDetailViewModel({
+  return new OrderDetail({
     Id: String(Utilidade.CreateGuid()),
     LastDate: new Date(),
     Local: String(detalhe.Local),
@@ -65,20 +65,19 @@ export default {
         throw new Error('Código de rastreamento inválido');
       }
 
-      const encomenda = await axios
-        .get(
-          `https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`,
-        )
-        .then(MontaObjetoRastreio)
-        .then(data => {
-          return new OrderViewModel({
-            Id: String(Utilidade.CreateGuid()),
-            Name: String(nomeEncomenda),
-            TrackingCode: String(codigoRastreio),
-            Delivered: true,
-            Detalhes: data.map(MontaDetalhesObjetoRastreio),
-          });
-        });
+      const response = await axios.get(
+        `https://www.websro.com.br/detalhes.php?P_COD_UNI=${codigoRastreio}`,
+      );
+
+      const detalhesRastreio = MontaObjetoRastreio(response);
+
+      const encomenda = new Order({
+        Id: String(Utilidade.CreateGuid()),
+        Name: String(nomeEncomenda),
+        TrackingCode: String(codigoRastreio),
+        Delivered: true,
+        Detalhes: detalhesRastreio.map(MontaDetalhesObjetoRastreio),
+      });
 
       return {result: true, encomenda};
     } catch (error) {
