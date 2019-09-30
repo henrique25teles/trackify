@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "1.6.2",
     "axios": "0.19.0",
+    "date-fns": "^2.4.1",
     "objectmodel": "4.0.3",
     "react": "16.8.6",
     "react-native": "0.60.5",
@@ -25,6 +26,7 @@
     "react-native-screens": "2.0.0-alpha.3",
     "react-native-shimmer-placeholder": "^1.0.35",
     "react-native-storage": "1.0.1",
+    "react-native-timeline-flatlist": "^0.5.0",
     "react-native-vector-icons": "6.6.0",
     "react-navigation": "4.0.10",
     "react-navigation-drawer": "2.2.2",
