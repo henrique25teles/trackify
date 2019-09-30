@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, FlatList, RefreshControl} from 'react-native';
+import {StyleSheet, FlatList, RefreshControl, Alert} from 'react-native';
 import LeftAvatar from '../components/Order/LeftAvatar';
 import ListItemSeparator from '../shared/components/ListItemSeparator';
 import ListSearchHeader from '../shared/components/ListSearchHeader';
@@ -8,6 +8,7 @@ import OrderController from '../controllers/OrderController';
 import ListItemCommon, {
   DeleteSideButton,
 } from '../shared/components/ListItemCommon';
+import ShimmerListItem from '../shared/components/ShimmerListItem';
 
 export default class Orders extends Component {
   constructor(props) {
@@ -18,17 +19,26 @@ export default class Orders extends Component {
       delivered: props.delivered,
       refreshing: true,
     };
-    this.keyExtractor = this.keyExtractor.bind(this);
   }
 
   keyExtractor = (item, index) => index.toString();
 
   renderRightActions = item => {
-    return <DeleteSideButton onDelete={() => this.deleteEncomenda(item.Id)} />;
+    return <DeleteSideButton onDelete={() => this.deleteOrder(item.Id)} />;
   };
 
-  deleteEncomenda = async id => {
-    await OrderController._delete(id);
+  deleteOrder = async id => {
+    try {
+      await OrderController._delete(id);
+    } catch (error) {
+      Alert.alert('Erro...', error.message);
+    } finally {
+      this.carregaDadosRastreio();
+    }
+  };
+
+  renderLoadingItem = ({item}) => {
+    return <ShimmerListItem />;
   };
 
   renderItem = ({item}) => {
@@ -66,20 +76,32 @@ export default class Orders extends Component {
     const data = await OrderController._getAll();
     await this.setState({
       data: data,
-      refreshing: false,
     });
+
+    setTimeout(() => {
+      this.setState({refreshing: false});
+    }, 1500);
   };
 
   render() {
+    const loadingData = new Array(6).fill(0).map((v, i) => {
+      return {item: v, index: i};
+    });
+
+    const data = this.state.refreshing ? loadingData : this.state.data;
+    const items = this.state.refreshing
+      ? this.renderLoadingItem
+      : this.renderItem;
+
     return (
       <>
         <FlatList
           style={styles.ViewTeste}
-          data={this.state.data}
+          data={data}
           ListHeaderComponent={ListSearchHeader}
           ItemSeparatorComponent={ListItemSeparator}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor.bind(this)}
+          renderItem={items}
           refreshControl={this.renderRefresh()}
         />
         <ButtonAdd

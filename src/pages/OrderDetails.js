@@ -1,24 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {ListItem, Avatar} from 'react-native-elements';
+import ShimmerListItem from '../shared/components/ShimmerListItem';
 
-const initialState = {
-  data: [],
-};
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refreshing: true,
+      data: this.props.navigation.getParam('data') || [],
+    };
+    this.retornaAvatar = this.retornaAvatar.bind(this);
+  }
 
-export default function Home(props) {
-  const [state, setstate] = useState(initialState);
+  componentDidMount() {
+    this.carregaDados();
+  }
 
-  useEffect(() => {
-    const dados = props.navigation.getParam('data', undefined);
-    if (dados) {
-      setstate({
-        data: dados,
-      });
-    }
-  }, [props.navigation]);
+  carregaDados() {
+    setTimeout(() => {
+      this.setState({refreshing: false});
+    }, 1200);
+  }
 
-  function retornaAvatar() {
+  retornaAvatar = () => {
     return (
       <Avatar
         size="medium"
@@ -28,29 +33,43 @@ export default function Home(props) {
         activeOpacity={0.7}
       />
     );
-  }
+  };
 
-  const keyExtractor = (item, index) => index.toString();
+  keyExtractor = (item, index) => index.toString();
 
-  function renderItem({item}) {
+  renderLoadingItem = ({item}) => {
+    return <ShimmerListItem />;
+  };
+
+  renderItem = ({item}) => {
     return (
       <ListItem
         title={item.Register}
         subtitle={item.Status}
-        leftAvatar={retornaAvatar()}
+        leftAvatar={this.retornaAvatar()}
         bottomDivider
-        chevron
+      />
+    );
+  };
+
+  render() {
+    const loadingData = new Array(9).fill(0).map((v, i) => {
+      return {item: v, index: i};
+    });
+
+    const data = this.state.refreshing ? loadingData : this.state.data;
+    const items = this.state.refreshing
+      ? this.renderLoadingItem
+      : this.renderItem;
+
+    return (
+      <FlatList
+        keyExtractor={this.keyExtractor.bind(this)}
+        data={data}
+        renderItem={items}
       />
     );
   }
-
-  return (
-    <FlatList
-      keyExtractor={keyExtractor}
-      data={state.data}
-      renderItem={renderItem}
-    />
-  );
 }
 
 const styles = StyleSheet.create({

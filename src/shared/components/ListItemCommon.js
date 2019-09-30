@@ -41,7 +41,7 @@ class ListItemCommon extends Component {
     const styles = StyleSheet.create({
       container: {
         height: hp('10%'),
-        width: wp('100%'),
+        width: '100%',
       },
     });
 
