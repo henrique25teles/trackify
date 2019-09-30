@@ -1,23 +1,5 @@
 import Order, {Storage} from '../models/Order/Order';
-import {Alert} from 'react-native';
 import OrderDetail from '../models/Order/OrderDetail';
-
-const AlertaErro = mensagem => {
-  Alert.alert('Erro', mensagem, [{text: 'Ok'}]);
-};
-
-const onError = err => {
-  console.warn(err.message);
-  switch (err.name) {
-    case 'NotFoundError':
-      AlertaErro('Registro não encontrado');
-      break;
-    case 'ExpiredError':
-      AlertaErro('Registro Expirado');
-      break;
-  }
-  return null;
-};
 
 const toModel = item => {
   return new Order({
@@ -61,12 +43,8 @@ export default {
     return toModel(data);
   },
   _getAll: async () => {
-    var data = await global.storage
-      .getAllDataForKey(Storage)
-      .then(encomendas => {
-        return encomendas;
-      });
-
+    var data = await global.storage.getAllDataForKey(Storage);
+    console.log(data);
     return data.map(toModel);
   },
   _delete: async id => {

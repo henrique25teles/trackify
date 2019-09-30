@@ -82,7 +82,13 @@ export default class Orders extends Component {
           renderItem={this.renderItem}
           refreshControl={this.renderRefresh()}
         />
-        <ButtonAdd />
+        <ButtonAdd
+          onPress={() =>
+            this.props.navigation.navigate('OrderAdd', {
+              updateOrders: this.carregaDadosRastreio.bind(this),
+            })
+          }
+        />
       </>
     );
   }

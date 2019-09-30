@@ -71,8 +71,12 @@ const PrimaryButton = props => {
 
   return (
     <Button
-      raised
-      icon={props.icon || null}
+      raised={props.raised || true}
+      type="solid"
+      icon={
+        props.icon ? {...props.icon, color: context.theme.defaultColor} : null
+      }
+      iconRight={props.iconRight || null}
       title={props.title || null}
       buttonStyle={[styles.button, props.buttonStyle]}
       containerStyle={[props.containerStyle]}
@@ -84,6 +88,10 @@ const PrimaryButton = props => {
       onPressIn={props.onPressIn || null}
       onPressOut={props.onPressOut || null}
       style={[props.style]}
+      disabled={props.disabled || false}
+      disabledStyle={styles.button}
+      loading={props.loading || false}
+      loadingProps={props.loadingProps || null}
     />
   );
 };

@@ -10,5 +10,6 @@ export default ObjectModel({
   Name: String,
   Delivered: Boolean,
   TrackingCode: String,
+  ShippingCompany: ['Correios'],
   Detalhes: ArrayModel(OrderDetail),
 });
